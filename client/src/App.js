@@ -3,8 +3,9 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" data-theme="emerald">
       <header className="App-header">
+        <button className="btn btn-accent">Click</button>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
