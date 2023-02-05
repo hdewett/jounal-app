@@ -5,7 +5,7 @@ import './App.css';
 
 const entriesUrl = "/api/entries";
 
-function App(props) {
+function App() {
 
 const [entriesData, setEntriesData] = useState([]);
 
@@ -39,7 +39,7 @@ const getEntriesDataWithAxios = async () => {
     </div>
     <div className='bg-white text-black'>
       {entriesData.map((entry) => {
-        return <p key={entry.id}>{entry.body}</p>
+        return <p key={entry.id}><span className='text-2xl font-bold'>{entry.id}:</span> {entry.body}</p>
       })}
       Hello World!
     </div>
