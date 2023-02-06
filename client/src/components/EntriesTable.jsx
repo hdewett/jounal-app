@@ -5,10 +5,10 @@ export default function EntriesTable(props) {
 
 
   return (
-  <div className="overflow-x-auto">
-    <table className="table table-zebra w-full">
+  <div className="overflow-x-auto flex justify-center">
+    <table className="table table-zebra w-2/3">
       <thead>
-        <tr clasName="flex justify-around">
+        <tr>
           <th>ID</th>
           <th>Title</th>
           <th>Date</th>
