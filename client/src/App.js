@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import EntriesTable from './components/EntriesTable';
 import './App.css';
 import { createRoot } from "react-dom/client";
@@ -23,9 +24,15 @@ import Stats from './pages/Stats';
 
 function App() {
 
+  const [darkModeState, setDarkMode] = useState("emerald");
+
+  const toggleDarkMode = () => {
+    !darkModeState ? setDarkMode("dark") : setDarkMode("emerald");
+  }
+
   const AppLayout = () => (
     <>
-      <SideNav />
+      <SideNav onClick={toggleDarkMode}/>
       <Outlet />
     </>
   );
@@ -44,9 +51,9 @@ function App() {
   );
 
       return (
-       <>
+       <div data-theme={darkModeState}>
           <RouterProvider router={router} />
-      </>
+        </div>
       );
     }
 

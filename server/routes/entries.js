@@ -42,7 +42,11 @@ const entriesDatabase = {
 module.exports = db => {
   router.get("/entries", (request, response) => {
     db.query(
-      `SELECT * FROM entries;`
+      `SELECT 
+        id, 
+        title, 
+        to_char(date,'YYYY-MM-DD') AS date
+      FROM entries;`
     ).then(({ rows: entries }) => {
       response.json(entries);
       console.log("retrieving entries");

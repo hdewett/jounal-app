@@ -30,8 +30,8 @@ export default function EntriesTable(props) {
 
 
   return (
-  <div className="overflow-x-auto flex justify-center">
-    <table className="table table-zebra w-2/3">
+    <div className="overflow-x-auto">
+    <table className="table w-full">
       <thead>
         <tr>
           <th>ID</th>
