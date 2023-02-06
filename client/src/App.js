@@ -3,6 +3,8 @@ import React, { useState, useEffect} from 'react';
 import axios from  'axios';
 import logo from './logo.svg';
 import './App.css';
+import SideNavigation from './components/SideNav';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 const entriesUrl = "/api/entries";
 
