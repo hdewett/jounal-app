@@ -12,7 +12,6 @@ import {
   ReactDOM,
   createRoutesFromElements,
   BrowserRouter
-
 } from "react-router-dom";
 
 import SideNav from "./components/SideNav";
