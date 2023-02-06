@@ -11,6 +11,7 @@ import SideNav from "./components/SideNav";
 import Dashboard from "./routes/Dashboard";
 import NewTask from "./routes/NewTask";
 import "./App.css";
+import Entries from "./routes/Entries";
 
 const AppLayout = () => (
   <>
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "newTask",
         element: <NewTask />,
+      },
+      {
+        path: "newentry",
+        element: <Entries />,
       },
     ]
 
