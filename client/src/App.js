@@ -1,7 +1,4 @@
-
-import React, { useState, useEffect} from 'react';
-import axios from  'axios';
-import logo from './logo.svg';
+import EntriesTable from './components/EntriesTable';
 import './App.css';
 import { createRoot } from "react-dom/client";
 import {
@@ -23,8 +20,6 @@ import NewTask from "./pages/NewTask";
 import Entries from './pages/Entries';
 import NewEntry from './pages/NewEntry';
 import Stats from './pages/Stats';
-
-const entriesUrl = "/api/entries";
 
 function App() {
 
