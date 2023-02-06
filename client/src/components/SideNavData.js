@@ -18,13 +18,13 @@ export const SideNavData = [
     cName: "nav-text",
   },
   {
-    title: "NewEntry",
+    title: "New Entry",
     path: "/newentry",
     icons: <AiIcons.AiOutlinePlus />,
     cName: "nav-text",
   },
   {
-    title: "NewTask",
+    title: "New Task",
     path: "/newTask",
     icons: <FaIcons.FaTasks />,
     cName: "nav-text",
