@@ -28,9 +28,10 @@ CREATE TABLE entries (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255) NOT NULL,
   date DATE NOT NULL DEFAULT CURRENT_DATE,
-  body TEXT,
+  entry TEXT,
   language_id INTEGER REFERENCES languages(id) ON DELETE CASCADE,
   framework_id INTEGER REFERENCES frameworks(id) ON DELETE CASCADE,
+  hours INTEGER,
   notes VARCHAR(255),
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );

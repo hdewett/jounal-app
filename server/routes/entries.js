@@ -40,7 +40,7 @@ const entriesDatabase = {
 // module.exports = router;
 
 module.exports = db => {
-  router.get("/entries", (request, response) => {
+  router.get("/entries", (req, response) => {
     db.query(
       `SELECT 
         id, 
@@ -53,7 +53,27 @@ module.exports = db => {
     })
       .catch(error => {
         console.log(`There was an ${error}`);
+        res.status(500).send
       });
   });
+
+
+  router.post('/entries', (req, res) => {
+    const { title, entry, hours, language, framework, notes } = req.body
+    
+    console.log("+_+++++++++++++++++++++++", req.body)
+    db.query(
+      `INSERT INTO entries (title,  entry, hours, language_id, framework_id, notes) VALUES ($1,$2,$3,$4,$5,$6) returning *;` ,[title, entry, hours, language, framework, notes]
+    ).then(({ rows: entries }) => {
+      console.log(entries, "$$$$")
+      return res.status(200).json(entries);
+  
+    })
+      .catch(error => {
+        console.log(`There was an ${error}`);
+        res.status(500).send
+      });
+  
+  })
   return router;
 };
