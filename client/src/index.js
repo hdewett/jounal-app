@@ -5,23 +5,36 @@ import {
   RouterProvider,
   Route,
   Link,
+  Outlet,
 } from "react-router-dom";
+import SideNav from "./components/SideNav";
+import Dashboard from "./routes/Dashboard";
 import NewTask from "./routes/NewTask";
+import "./App.css";
+
+const AppLayout = () => (
+  <>
+  <SideNav/>
+  <Outlet/>
+  </>
+)
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: (
-      <div>
-        <h1>Hello World</h1>
-        <Link to="about">About Us</Link>
-      </div>
-    ),
+    element: <AppLayout/>,
+    children : [
+      {
+        path: "/",
+        element: <Dashboard/>
+      },
+      {
+        path: "newTask",
+        element: <NewTask />,
+      },
+    ]
+
   },
-  {
-    path: "newTask",
-    element: <NewTask />,
-  },
+  
 ]);
 
 createRoot(document.getElementById("root")).render(
