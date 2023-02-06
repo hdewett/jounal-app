@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "reset": "psql -U development -d journal < ./db/schema/create.sql && psql -U development -d journal < ./db/schema/seed.sql",
     "test:server": "NODE_ENV=test npm start"
   },
