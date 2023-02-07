@@ -10,7 +10,8 @@ module.exports = db => {
         id, 
         title, 
         to_char(date,'YYYY-MM-DD') AS date
-      FROM entries;`
+      FROM entries
+      order by date desc;`
     ).then(({ rows: entries }) => {
       console.log("retrieving entries");
       return response.json(entries);
