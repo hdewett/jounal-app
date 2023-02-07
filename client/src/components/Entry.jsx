@@ -31,6 +31,7 @@ export default function Entry(props) {
     <DeleteEntry
       key={props.id}
       id={props.id}
+      handleDelete={props.handleDelete}
     />
   </>
   );
