@@ -17,6 +17,12 @@ export default function EntriesTable(props) {
     setEntriesData(response.data);
   };
 
+  const handleDelete = async (id) => {
+    setEntriesData(entriesData.filter((e) => e.id !== id))
+    await axios.delete('/api/entries/' + id);
+    console.log("Deleting Entry ID: ", id);
+  }
+
   // Create Appointment components array.
   const entryArray = entriesData.map((entry) => {
 
@@ -25,13 +31,14 @@ export default function EntriesTable(props) {
         id={entry.id}
         title={entry.title}
         date={entry.date}
+        handleDelete={handleDelete}
         />;
 });
 
 
   return (
     <div className="overflow-x-auto">
-    <table className="table w-full">
+    <table className="table w-full shadow-xl">
       <thead>
         <tr>
           <th>ID</th>
@@ -41,7 +48,7 @@ export default function EntriesTable(props) {
         </tr>
       </thead>
       <tbody>
-        { entryArray }
+        { entryArray.length === 0 ? 'Sorry, there are currently no entries' : entryArray }
       </tbody>
     </table>
   </div>
