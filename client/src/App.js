@@ -14,12 +14,12 @@ import {
   BrowserRouter
 } from "react-router-dom";
 
-import SideNav from "./components/SideNav";
 import Dashboard from "./pages/Dashboard";
 import EntriesFeed from "./pages/EntriesFeed";
 import Entries from './pages/Entries';
 import NewEntry from './pages/NewEntry';
 import Stats from './pages/Stats';
+import SideNavBar from './components/SideNavBar';
 
 function App() {
 
@@ -31,8 +31,8 @@ function App() {
 
   const AppLayout = () => (
     <>
-      <SideNav onClick={toggleDarkMode}/>
-      <Outlet />
+      <SideNavBar onClick={toggleDarkMode}/>
+
     </>
   );
   
