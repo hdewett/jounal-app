@@ -7,22 +7,18 @@ import { useNavigate } from "react-router-dom";
 function NewEntry() {
   const navigate = useNavigate();
   const [newEntry, setnewEntry] = useState({
-   title: "",
-   date: "",
-   entry:"",
-hours: "",
-   language:"",
-  framework:"",
-  notes:""
-
-
+    title: "",
+    date: "",
+    entry:"",
+    hours: "",
+    language:"",
+    framework:"",
+    notes:""
   });
   
 const save = () => {
-
   axios.post('/api/entries', 
     newEntry
-  
   )
   .then(function (response) {
     navigate("/entriesfeed")
@@ -39,10 +35,11 @@ return {... prev, [key]:value}
   })
 }
   return (
-    <div data-theme="emerald"className="lg:justify-center lg:align-middle lg:flex  ">
+
+    <div data-theme="emerald" className="lg:justify-center lg:align-middle lg:flex  ">
     <form className="w-[100vw]" onSubmit={((event) =>{
-      event.preventDefault()
-      save()
+      event.preventDefault();
+      save();
 
     })}>
       <div className="flex">
@@ -53,8 +50,11 @@ return {... prev, [key]:value}
         </div>
         <div className="flex gap-2 w-1/4 p-4 bg-gray-500 text-white">
           <h3>Date</h3>
-          <input className="w-full text-black" value={newEntry.date
-          }  onChange={(event) => updateEntry("date", event.target.value)}></input>
+          <input 
+            className="w-full text-black" 
+            value={newEntry.date}  
+            onChange={(event) => updateEntry("date", event.target.value)}>
+          </input>
         </div>
       </div>
       <div className="flex">
@@ -63,16 +63,16 @@ return {... prev, [key]:value}
           <textarea
             rows="5"
             className="w-full text-black border p-4 border-black"
-            value={newEntry.entry
-            }  onChange={(event) => updateEntry("entry", event.target.value)}
-          ></textarea>
+            value={newEntry.entry}
+            onChange={(event) => updateEntry("entry", event.target.value)}>
+          </textarea>
         </div>
       </div>
       <div className="flex">
         <div className="flex justify-between gap-2 w-full p-4 bg-gray-500 ">
           <h3 className="text-white">Hours spent studying</h3>
           <select className="text-black w-1/4" name="hours" id="hours"  value={newEntry.hours}  onChange={(event) => updateEntry("hours", event.target.value)}>
-            <option value="1">1 hour</option>
+            <option value="1" selected>1 hour</option>
             <option value="2">2 hours</option>
             <option value="3">3 hours</option>
             <option value="4">4 hours</option>
@@ -84,7 +84,7 @@ return {... prev, [key]:value}
           <h3>Language</h3>
           <select className="text-black w-full" name="cars" id="cars"  value={newEntry.language
           }  onChange={(event) => updateEntry("language", event.target.value)}>
-            <option value="1">Javascript</option>
+            <option value="1" selected>Javascript</option>
             <option value="2">Python</option>
             <option value="3">Java</option>
            
@@ -92,12 +92,15 @@ return {... prev, [key]:value}
         </div>
         <div className=" gap-2 w-1/4 p-4 bg-gray-600 text-white">
           <h3>Framework</h3>
-          <select className="text-black w-full" name="cars" id="cars"  value={newEntry.framework
-          }  onChange={(event) => updateEntry("framework", event.target.value)}>
-            <option value="1"> React</option>
+          <select 
+          className="text-black w-full" 
+          name="cars" 
+          id="cars"  
+          alue={newEntry.framework}
+          onChange={(event) => updateEntry("framework", event.target.value)}>
+            <option value="1" selected> React</option>
             <option value="2">Django</option>
             <option value="3"> Kotlin</option>
-           
           </select>
         </div>
         <div className=" gap-2 w-1/2 p-4 bg-gray-600 text-white">
@@ -105,9 +108,9 @@ return {... prev, [key]:value}
           <textarea
             rows="2"
             className="w-full text-black border p-4 border-black"
-            value={newEntry.notes
-            }  onChange={(event) => updateEntry("notes", event.target.value)}
-          ></textarea>
+            value={newEntry.notes}
+            onChange={(event) => updateEntry("notes", event.target.value)}>
+          </textarea>
         </div>
       </div>
       <div className="flex justify-between">

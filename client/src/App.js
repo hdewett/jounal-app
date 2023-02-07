@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import EntriesTable from './components/EntriesTable';
+import EditorComponent from './pages/EditorComponent';
 import './App.css';
 import { createRoot } from "react-dom/client";
 import {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/newEntry" element={<NewEntry />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/entriesfeed" element={<EntriesFeed />} />
+        <Route path="/EditorJs" element={<EditorComponent />} />
       </Route>
       
     )

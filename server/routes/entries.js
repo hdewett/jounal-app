@@ -28,7 +28,7 @@ module.exports = db => {
     
     console.log("+_+++++++++++++++++++++++", req.body);
     db.query(
-      `INSERT INTO entries (title, entries, hours, language_id, framework_id, notes) VALUES ($1,$2,$3,$4,$5,$6) returning *;` ,[title, entry, hours, language, framework, notes]
+      `INSERT INTO entries (title, entry, hours, language_id, framework_id, notes) VALUES ($1,$2,$3,$4,$5,$6) returning *;` ,[title, entry, hours, language, framework, notes]
     ).then(({ rows: entries }) => {
       console.log(entries, "$$$$");
       return res.status(200).json(entries);
