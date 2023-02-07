@@ -19,14 +19,13 @@ hours: "",
   });
   
 const save = () => {
- 
-  console.log(newEntry)
+
   axios.post('/api/entries', 
     newEntry
   
   )
   .then(function (response) {
-    navigate("/")
+    navigate("/entriesfeed")
     console.log(response);
   })
   .catch(function (error) {
@@ -59,7 +58,7 @@ return {... prev, [key]:value}
         </div>
       </div>
       <div className="flex">
-        <div className=" gap-2 w-full p-4 bg-gray-700" >
+        <div className=" gap-2 w-full p-4 bg-gray-500" >
           <h3 className="text-white">Entry</h3>
           <textarea
             rows="5"
@@ -70,7 +69,7 @@ return {... prev, [key]:value}
         </div>
       </div>
       <div className="flex">
-        <div className="flex justify-between gap-2 w-full p-4 bg-gray-700 ">
+        <div className="flex justify-between gap-2 w-full p-4 bg-gray-500 ">
           <h3 className="text-white">Hours spent studying</h3>
           <select className="text-black w-1/4" name="hours" id="hours"  value={newEntry.hours}  onChange={(event) => updateEntry("hours", event.target.value)}>
             <option value="1">1 hour</option>
@@ -81,7 +80,7 @@ return {... prev, [key]:value}
         </div>
       </div>
       <div className="flex">
-        <div className=" gap-2 w-1/4 p-4 bg-gray-800 text-white">
+        <div className=" gap-2 w-1/4 p-4 bg-gray-600 text-white">
           <h3>Language</h3>
           <select className="text-black w-full" name="cars" id="cars"  value={newEntry.language
           }  onChange={(event) => updateEntry("language", event.target.value)}>
@@ -91,7 +90,7 @@ return {... prev, [key]:value}
            
           </select>
         </div>
-        <div className=" gap-2 w-1/4 p-4 bg-gray-800 text-white">
+        <div className=" gap-2 w-1/4 p-4 bg-gray-600 text-white">
           <h3>Framework</h3>
           <select className="text-black w-full" name="cars" id="cars"  value={newEntry.framework
           }  onChange={(event) => updateEntry("framework", event.target.value)}>
@@ -101,7 +100,7 @@ return {... prev, [key]:value}
            
           </select>
         </div>
-        <div className=" gap-2 w-1/2 p-4 bg-gray-800 text-white">
+        <div className=" gap-2 w-1/2 p-4 bg-gray-600 text-white">
           <h3>Notes</h3>
           <textarea
             rows="2"
@@ -113,8 +112,8 @@ return {... prev, [key]:value}
       </div>
       <div className="flex justify-between">
         <div></div>
-        <div className="bg-gray-400 text-black my-3">
-          <button className="px-5 py-3" >Save</button>
+        <div className="bg-gray-400 text-black my-3 absolute bottom-100 right-90">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded  ">Save</button>
         </div>
       </div>
     </form>

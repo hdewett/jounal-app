@@ -17,7 +17,7 @@ import {
 
 import SideNav from "./components/SideNav";
 import Dashboard from "./pages/Dashboard";
-import NewTask from "./pages/NewTask";
+import EntriesFeed from "./pages/EntriesFeed";
 import Entries from './pages/Entries';
 import NewEntry from './pages/NewEntry';
 import Stats from './pages/Stats';
@@ -44,7 +44,7 @@ function App() {
         <Route path="/Entries" element={<Entries />} />
         <Route path="/newEntry" element={<NewEntry />} />
         <Route path="/stats" element={<Stats />} />
-        <Route path="/newTask" element={<NewTask />} />
+        <Route path="/entriesfeed" element={<EntriesFeed />} />
       </Route>
       
     )

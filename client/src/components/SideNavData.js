@@ -24,8 +24,8 @@ export const SideNavData = [
     cName: "nav-text",
   },
   {
-    title: "New Task",
-    path: "/newTask",
+    title: "Entries Feed",
+    path: "/entriesfeed",
     icons: <FaIcons.FaTasks />,
     cName: "nav-text",
   },

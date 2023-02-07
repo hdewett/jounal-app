@@ -56,8 +56,6 @@ module.exports = db => {
         res.status(500).send
       });
   });
-
-
   router.post('/entries', (req, res) => {
     const { title, entry, hours, language, framework, notes } = req.body
     
