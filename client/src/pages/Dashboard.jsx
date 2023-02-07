@@ -1,20 +1,51 @@
 import React, { useState } from "react";
-import Calendar from "react-calendar";
 import EntriesTable from "../components/EntriesTable";
 import { Outlet } from "react-router";
 import 'react-calendar/dist/Calendar.css';
+import CalendarSmall from "../components/CalendarSmall";
 
 function Dashboard() {
 
   return (
-<div className="flex flex-col w-full h-screen border-opacity-50 px-14">
-
-  <div className="flex items-center w-full mt-5">
-    <h2 className="font-bold text-3xl">Entries</h2>
+    <main class="flex h-full w-full flex-col px-14 my-10">
+    <div class="flex h-auto w-full mb-28">
+      {/* <!-- Calendar component --> */}
+      
+      <section class="h-96 w-3/4 flex justify-center items-center"><CalendarSmall /></section>
+      {/* <!-- Stats component--> */}
+      <section class="h-96 w-1/4 flex justify-center items-center pl-24"><div className = "flex pt-10">
+  <div className="stats stats-vertical shadow">
+  
+  <div className="stat">
+    <div className="stat-title">Total Words</div>
+    <div className="stat-value">31K</div>
+    <div className="stat-desc">Words Typed</div>
   </div>
-  <EntriesTable />
-  <Outlet />
-</div>
+  
+  <div className="stat">
+    <div className="stat-title">Languages</div>
+    <div className="stat-value">10</div>
+    <div className="stat-desc">Languages Used</div>
+  </div>
+  
+  <div className="stat">
+    <div className="stat-title">Hours</div>
+    <div className="stat-value">46</div>
+    <div className="stat-desc">Total Hours</div>
+  </div>
+  </div>
+  </div></section>
+    </div>
+    {/* <!-- Entries --> */}
+    <div>
+    <h2 className="font-bold text-3xl">Entries</h2>
+    <EntriesTable />
+    <Outlet />
+    </div>
+  </main>
+
+
+  
 
   )
 }
