@@ -7,15 +7,18 @@ const dbparams = {
   database: process.env.PGDATABASE,
   host: process.env.PGHOST,
   port: process.env.PGPORT
-}
+};
+
 const pool = new Pool(
- dbparams
- );
- console.log(dbparams)
+  dbparams
+);
+
+console.log(dbparams);
+
 pool.connect().then(() => {
-console.log("db connected")
+  console.log("db connected");
 }).catch((error) =>{
-console.log("db connection error", error)
-})
+  console.log("db connection error", error);
+});
 
 module.exports = pool;
