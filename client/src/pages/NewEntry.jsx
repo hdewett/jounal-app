@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 function NewEntry() {
   const navigate = useNavigate();
   const [newEntry, setnewEntry] = useState({
-   title: "",
-   date: "",
-   entry:"",
-hours: "",
-   language:"",
-  framework:"",
-  notes:""
+    title: "",
+    date: "",
+    entry:"",
+    hours: "",
+    language:"",
+    framework:"",
+    notes:""
 
 
   });
@@ -39,7 +39,7 @@ return {... prev, [key]:value}
   })
 }
   return (
-    <div data-theme="emerald"className="lg:justify-center lg:align-middle lg:flex  ">
+    <div data-theme="emerald"className="lg:justify-center lg:align-middle lg:flex px-14">
     <form className="w-[100vw]" onSubmit={((event) =>{
       event.preventDefault()
       save()
