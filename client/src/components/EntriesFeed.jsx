@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EntriesFeedItem from './EntriesFeedItem';
+import Entry from './Entry';
 import axios from  'axios';
 
 const entriesUrl = "/api/entries";
@@ -23,23 +23,16 @@ export default function EntriesTable(props) {
     console.log("Deleting Entry ID: ", id);
   }
 
-
+  // Create Appointment components array.
   const entryArray = entriesData.map((entry) => {
 
-    return <EntriesFeedItem
+    return <Entry
         key={entry.id}
         id={entry.id}
         title={entry.title}
         date={entry.date}
-        body={entry.body}
-   entry={entry.entry}
-hours={entry.hours}
-   language={entry.language}
-  framework={entry.framework}
-  notes={entry.notes}
         handleDelete={handleDelete}
         />;
-
 });
 
 
