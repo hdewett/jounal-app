@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import EntriesTable from './components/EntriesTable';
-import EditorComponent from './pages/EditorComponent';
+import TipTap from './components/Tiptap';
 import './App.css';
 import { createRoot } from "react-dom/client";
 import {
@@ -24,17 +24,20 @@ import Stats from './pages/Stats';
 
 function App() {
 
-  const [darkModeState, setDarkMode] = useState("emerald");
+  const [darkModeState, setDarkMode] = useState(true);
 
   const toggleDarkMode = () => {
-    !darkModeState ? setDarkMode("dark") : setDarkMode("emerald");
+    setDarkMode(!darkModeState);
+    console.log(darkModeState);
   }
 
+  const [entryFormData, setEntryFormData] = useState('');
+
   const AppLayout = () => (
-    <>
-      <SideNav onClick={toggleDarkMode}/>
+    <section data-theme={darkModeState ? "emerald" : "dark"}>
+      <SideNav toggleDarkMode={toggleDarkMode}/>
       <Outlet />
-    </>
+    </section>
   );
   
   const router = createBrowserRouter(
@@ -45,7 +48,7 @@ function App() {
         <Route path="/newEntry" element={<NewEntry />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/entriesfeed" element={<EntriesFeed />} />
-        <Route path="/EditorJs" element={<EditorComponent />} />
+        <Route path="/EditorJs" element={<TipTap setEntryFormData={setEntryFormData}/>} />
       </Route>
       
     )
