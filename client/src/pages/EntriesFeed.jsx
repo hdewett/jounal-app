@@ -1,16 +1,16 @@
 import React from "react";
 import { Outlet } from "react-router";
-import EntriesTable from "../components/EntriesTable";
+import EntriesFeed from "../components/EntriesFeed";
 
-function EntriesFeed() {
+function EntriesFeeds() {
   return (
     
     <div className="EntriesFeed">
       <h1>NEW entry</h1>
-      <EntriesTable />
+      <EntriesFeed />
       <Outlet />
     </div>
   )
 }
 
-export default EntriesFeed;
+export default EntriesFeeds;
