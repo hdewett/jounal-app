@@ -20,6 +20,7 @@ import Entries from './pages/Entries';
 import NewEntry from './pages/NewEntry';
 import Stats from './pages/Stats';
 import SideNavBar from './components/SideNavBar';
+import CalendarSmall from './components/CalendarSmall'
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/newEntry" element={<NewEntry />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/entriesfeed" element={<EntriesFeed />} />
+        <Route path="/calendar" element={<CalendarSmall/>} />
       </Route>
       
     )
