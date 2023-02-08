@@ -1,6 +1,6 @@
 import React from "react";
-import { Outlet } from "react-router";
-import  { useState, useEffect } from 'react';
+
+import { useState, useEffect } from 'react';
 import axios from  'axios';
 import { useNavigate } from "react-router-dom";
 
@@ -29,9 +29,9 @@ const save = () => {
   });
 }
 
-const updateEntry = (key,value) => {
+const updateEntry = (key, value) => {
   setnewEntry((prev) =>{
-return {... prev, [key]:value}
+return {...prev, [key]:value}
   })
 }
   return (
@@ -96,7 +96,7 @@ return {... prev, [key]:value}
           className="text-black w-full" 
           name="cars" 
           id="cars"  
-          alue={newEntry.framework}
+          value={newEntry.framework}
           onChange={(event) => updateEntry("framework", event.target.value)}>
             <option value="1" selected> React</option>
             <option value="2">Django</option>
