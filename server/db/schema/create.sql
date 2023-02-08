@@ -27,7 +27,11 @@ CREATE TABLE users (
 CREATE TABLE entries (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255) NOT NULL,
+<<<<<<< HEAD
   date DATE,
+=======
+  date DATE DEFAULT CURRENT_DATE,
+>>>>>>> main
   entry TEXT,
   language_id INTEGER REFERENCES languages(id) ON DELETE CASCADE,
   framework_id INTEGER REFERENCES frameworks(id) ON DELETE CASCADE,

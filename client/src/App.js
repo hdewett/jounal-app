@@ -15,12 +15,14 @@ import {
   BrowserRouter
 } from "react-router-dom";
 
-import SideNav from "./components/SideNav";
 import Dashboard from "./pages/Dashboard";
 import EntriesFeed from "./pages/EntriesFeed";
 import Entries from './pages/Entries';
 import NewEntry from './pages/NewEntry';
 import Stats from './pages/Stats';
+import SideNavBar from './components/SideNavBar';
+import CalendarSmall from './components/CalendarSmall'
+import EditEntry from './pages/EditEntry'
 
 function App() {
 
@@ -34,10 +36,17 @@ function App() {
   const [entryFormData, setEntryFormData] = useState('');
 
   const AppLayout = () => (
+<<<<<<< HEAD
     <section data-theme={darkModeState ? "emerald" : "dark"}>
       <SideNav toggleDarkMode={toggleDarkMode}/>
       <Outlet />
     </section>
+=======
+    <>
+      <SideNavBar onClick={toggleDarkMode}/>
+
+    </>
+>>>>>>> main
   );
   
   const router = createBrowserRouter(
@@ -48,7 +57,12 @@ function App() {
         <Route path="/newEntry" element={<NewEntry />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/entriesfeed" element={<EntriesFeed />} />
+<<<<<<< HEAD
         <Route path="/EditorJs" element={<TipTap setEntryFormData={setEntryFormData}/>} />
+=======
+        <Route path="/calendar" element={<CalendarSmall/>} />
+        <Route path="/entry/:id" element={<EditEntry/>} />
+>>>>>>> main
       </Route>
       
     )
