@@ -36,17 +36,10 @@ function App() {
   const [entryFormData, setEntryFormData] = useState('');
 
   const AppLayout = () => (
-<<<<<<< HEAD
     <section data-theme={darkModeState ? "emerald" : "dark"}>
-      <SideNav toggleDarkMode={toggleDarkMode}/>
+      <SideNavBar toggleDarkMode={toggleDarkMode}/>
       <Outlet />
     </section>
-=======
-    <>
-      <SideNavBar onClick={toggleDarkMode}/>
-
-    </>
->>>>>>> main
   );
   
   const router = createBrowserRouter(
@@ -57,12 +50,8 @@ function App() {
         <Route path="/newEntry" element={<NewEntry />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/entriesfeed" element={<EntriesFeed />} />
-<<<<<<< HEAD
-        <Route path="/EditorJs" element={<TipTap setEntryFormData={setEntryFormData}/>} />
-=======
         <Route path="/calendar" element={<CalendarSmall/>} />
         <Route path="/entry/:id" element={<EditEntry/>} />
->>>>>>> main
       </Route>
       
     )
