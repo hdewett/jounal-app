@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import EntriesTable from './components/EntriesTable';
-import TipTap from './components/Tiptap';
 import './App.css';
 import { createRoot } from "react-dom/client";
 import {
@@ -23,6 +22,7 @@ import Stats from './pages/Stats';
 import SideNavBar from './components/SideNavBar';
 import CalendarSmall from './components/CalendarSmall'
 import EditEntry from './pages/EditEntry'
+import TinyMCE from './components/TinyMCE';
 
 function App() {
 
@@ -51,6 +51,7 @@ function App() {
         <Route path="/entriesfeed" element={<EntriesFeed />} />
         <Route path="/calendar" element={<CalendarSmall/>} />
         <Route path="/entry/:id" element={<EditEntry/>} />
+        <Route path="/editor" element={<TinyMCE />} />
       </Route>
       
     )
