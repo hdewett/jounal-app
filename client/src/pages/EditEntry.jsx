@@ -22,6 +22,7 @@ function EditEntry() {
     // console.log(response.data)
   };
   
+  {/* map through entrData function */}
   return (
     <>
     {entryData.map((item) => (
