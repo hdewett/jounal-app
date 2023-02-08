@@ -1,127 +1,265 @@
-import React from "react";
-
-import { useState, useEffect } from 'react';
+import { EditorContent, useEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import { 
+  FaBold, 
+  FaItalic, 
+  FaCode, 
+  FaLaptopCode, 
+  FaHeading,
+  FaUndo,
+  FaRedo,
+  FaListOl,
+  FaListUl
+ } from 'react-icons/fa';
+import React from 'react';
+import { useState } from 'react';
 import axios from  'axios';
 import { useNavigate } from "react-router-dom";
 
-function NewEntry() {
-  const navigate = useNavigate();
-  const [newEntry, setnewEntry] = useState({
-    title: "",
-    date: "",
-    entry:"",
-    hours: "",
-    language:"",
-    framework:"",
-    notes:""
-  });
-  
-const save = () => {
-  axios.post('/api/entries', 
-    newEntry
-  )
-  .then(function (response) {
-    navigate("/entriesfeed")
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
+const MenuBar = ({ editor }) => {
+  if (!editor) {
+    return null
+  }
 
-const updateEntry = (key, value) => {
-  setnewEntry((prev) =>{
-return {...prev, [key]:value}
-  })
-}
   return (
+    <section className="btn-group flex w-2/3 justify-center">
+      <button
+        onClick={() => editor.chain().focus().toggleBold().run()}
+        disabled={
+          !editor.can()
+            .chain()
+            .focus()
+            .toggleBold()
+            .run()
+        }
+        className={editor.isActive('bold') ? 'is-active btn btn-active' : 'btn' }
+      >
+        <FaBold size={25}/>
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleItalic().run()}
+        disabled={
+          !editor.can()
+            .chain()
+            .focus()
+            .toggleItalic()
+            .run()
+        }
+        className={editor.isActive('italic') ? 'is-active btn btn-active' : 'btn'}
+      >
+        <FaItalic size={25}/>
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleCode().run()}
+        disabled={
+          !editor.can()
+            .chain()
+            .focus()
+            .toggleCode()
+            .run()
+        }
+        className={editor.isActive('code') ? 'is-active btn btn-active' : 'btn'}
+      >
+        <FaCode size={25}/>
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+        className={editor.isActive('heading', { level: 1 }) ? 'is-active btn btn-active' : 'btn'}
+      >
+        <FaHeading size={25}/>
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleBulletList().run()}
+        className={editor.isActive('bulletList') ? 'is-active btn btn-active' : 'btn'}
+      >
+        <FaListUl size={25}/>
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleOrderedList().run()}
+        className={editor.isActive('orderedList') ? 'is-active btn btn-active' : 'btn'}
+      >
+        <FaListOl size={25} />
+      </button>
+      <button
+        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+        className={editor.isActive('codeBlock') ? 'is-active btn btn-active' : 'btn'}
+      >
+        <FaLaptopCode size={25}/>
+      </button>
+      <button
+        className="btn btn-ghost"
+        onClick={() => editor.chain().focus().undo().run()}
+        disabled={
+          !editor.can()
+            .chain()
+            .focus()
+            .undo()
+            .run()
+        }
+      >
+        <FaUndo size={25}/>
+      </button>
+      <button
+        className="btn btn-ghost"
+        onClick={() => editor.chain().focus().redo().run()}
+        disabled={
+          !editor.can()
+            .chain()
+            .focus()
+            .redo()
+            .run()
+        }
+      >
+        <FaRedo size={25}/>
+      </button>
+    </section>
+  )
+}
 
-    <div data-theme="emerald" className="lg:justify-center lg:align-middle lg:flex  ">
-    <form className="w-[100vw]" onSubmit={((event) =>{
-      event.preventDefault();
-      save();
+const NewEntry = ({setEntryFormData}) => {
 
-    })}>
-      <div className="flex">
-        <div className="flex gap-2 w-3/4 p-4 bg-gray-500 text-white">
-          <h3>Title</h3>
-          <input className="w-full text-black " value={newEntry.title
-          }  onChange={(event) => updateEntry("title", event.target.value)}></input>
+  const navigate = useNavigate();
+
+  // Formats and sets the default value of the date picker to today's date.
+  const today = new Date();
+  const date = today.setDate(today.getDate()); 
+  const defaultDateValue = new Date(date).toISOString().split('T')[0] // yyyy-mm-dd
+
+  const [newEntry, setnewEntry] = useState({
+    title: null,
+    date: defaultDateValue,
+    entry: null,
+    hours: null,
+    language: null,
+    framework: null,
+    notes: null,
+  });
+
+
+  const updateEntry = (key, value) => {
+    setnewEntry((prev) =>{
+      return {...prev, [key]:value}
+    })
+  }
+
+  // Initializes TipTap text editor
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+    ],
+    onUpdate({ editor }) {
+      const html = editor.getHTML();
+      updateEntry("entry", html);
+    },
+    content: ``,
+  })
+
+  // Save entry to the db
+  const save = () => {
+    console.log("Current State: ", newEntry)
+    axios.post('/api/entries', newEntry)
+    .then((response) => {
+      navigate("/entriesfeed")
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  // Get content from the text editor as html
+  const getHtml = () => {
+    const html = editor.getHTML();
+      console.log("Editor html: ", html);
+      return html;
+  }
+
+  return (
+      <div className="flex flex-col justify-center items-center mt-5">
+        <div className="mockup-code bg-primary text-primary-content mb-10">
+          <pre data-prefix="1"><code>Create A New Journal Entry!</code></pre>
         </div>
-        <div className="flex gap-2 w-1/4 p-4 bg-gray-500 text-white">
-          <h3>Date</h3>
-          <input 
-            className="w-full text-black" 
-            value={newEntry.date}  
-            onChange={(event) => updateEntry("date", event.target.value)}>
-          </input>
+        <form 
+          className="flex flex-col justify-center items-center w-full" 
+          onSubmit={((event) =>{
+            event.preventDefault();
+            save();})}>
+        <div className="flex w-full justify-center gap-x-3 mb-10">
+        <input 
+          type="text" 
+          placeholder="Entry Title"
+          value={newEntry.title} 
+          onChange={(event) => updateEntry("title", event.target.value)}
+          className="input input-bordered w-full max-w-xs"
+          required
+        />
+        <input 
+          type="date" 
+          defaultValue={defaultDateValue}
+          value={newEntry.date}  
+          onChange={(event) => updateEntry("date", event.target.value)}
+          className="input input-bordered w-full max-w-xs" 
+        />
         </div>
-      </div>
-      <div className="flex">
-        <div className=" gap-2 w-full p-4 bg-gray-500" >
-          <h3 className="text-white">Entry</h3>
-          <textarea
-            rows="5"
-            className="w-full text-black border p-4 border-black"
-            value={newEntry.entry}
-            onChange={(event) => updateEntry("entry", event.target.value)}>
-          </textarea>
-        </div>
-      </div>
-      <div className="flex">
-        <div className="flex justify-between gap-2 w-full p-4 bg-gray-500 ">
-          <h3 className="text-white">Hours spent studying</h3>
-          <select className="text-black w-1/4" name="hours" id="hours"  value={newEntry.hours}  onChange={(event) => updateEntry("hours", event.target.value)}>
-            <option value="1" selected>1 hour</option>
-            <option value="2">2 hours</option>
-            <option value="3">3 hours</option>
-            <option value="4">4 hours</option>
-          </select>
-        </div>
-      </div>
-      <div className="flex">
-        <div className=" gap-2 w-1/4 p-4 bg-gray-600 text-white">
-          <h3>Language</h3>
-          <select className="text-black w-full" name="cars" id="cars"  value={newEntry.language
-          }  onChange={(event) => updateEntry("language", event.target.value)}>
-            <option value="1" selected>Javascript</option>
-            <option value="2">Python</option>
-            <option value="3">Java</option>
-           
-          </select>
-        </div>
-        <div className=" gap-2 w-1/4 p-4 bg-gray-600 text-white">
-          <h3>Framework</h3>
-          <select 
-          className="text-black w-full" 
+        {/* Editor ToolBar - bold, italic, code snippet, etc... */}
+        <MenuBar editor={editor} className="w-2/3"/>
+        {/* Editor */}
+        <EditorContent 
+          editor={editor}
+          className="textarea textarea-bordered w-2/3 mt-3 text-xl"
+          />
+        <div className="w-2/3 flex gap-x-3 mt-3">
+        <select 
+          className="select select-bordered w-auto max-w-xs" 
+          name="hours" 
+          id="hours"  
+          value={newEntry.language}  
+          onChange={(event) => updateEntry("language", event.target.value)}>
+            <option disabled selected>Language</option>
+            <option value={1}>Javascript</option>
+            <option value={2}>Python</option>
+            <option value={3}>Java</option>
+        </select>
+        <select 
+          className="select select-bordered w-auto max-w-xs"
           name="cars" 
           id="cars"  
           value={newEntry.framework}
           onChange={(event) => updateEntry("framework", event.target.value)}>
-            <option value="1" selected> React</option>
-            <option value="2">Django</option>
-            <option value="3"> Kotlin</option>
-          </select>
+            <option disabled selected>Framework</option>
+            <option value={1}>React</option>
+            <option value={2}>Django</option>
+            <option value={3}>Kotlin</option>
+        </select>
+        <select 
+          className="select select-bordered w-auto max-w-xs"
+          name="hours" 
+          id="hours"  
+          value={newEntry.hours}  
+          onChange={(event) => updateEntry("hours", event.target.value)}>
+            <option disabled selected>Hours Spent Studying</option>
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+        </select>
+        <input 
+        type="text"
+        placeholder="Additional Notes" 
+        className="input input-bordered w-auto max-w-xs" 
+        value={newEntry.notes}
+        onChange={(event) => updateEntry("notes", event.target.value)}/>
         </div>
-        <div className=" gap-2 w-1/2 p-4 bg-gray-600 text-white">
-          <h3>Notes</h3>
-          <textarea
-            rows="2"
-            className="w-full text-black border p-4 border-black"
-            value={newEntry.notes}
-            onChange={(event) => updateEntry("notes", event.target.value)}>
-          </textarea>
+        <div className='flex w-2/3 justify-end mt-3 mb-10'>
+          <button type="submit" className="btn btn-primary w-32">Save</button>
+        </div>
+      </form>
+        <div className='flex w-2/3 justify-end mt-3 mb-10'>
+          <button onClick={getHtml} className="btn btn-primary w-32">Print HTML</button>
         </div>
       </div>
-      <div className="flex justify-between">
-        <div></div>
-        <div className="bg-gray-400 text-black my-3 absolute bottom-100 right-90">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded  ">Save</button>
-        </div>
-      </div>
-    </form>
-  </div>
   )
 }
 
-export default NewEntry;
+export default NewEntry

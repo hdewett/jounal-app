@@ -12,7 +12,7 @@ import {
   FaListUl
  } from 'react-icons/fa';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from  'axios';
 import { useNavigate } from "react-router-dom";
 
@@ -116,26 +116,29 @@ const MenuBar = ({ editor }) => {
   )
 }
 
-const TipTap = ({setEntryFormData}) => {
+const NewEntry = ({setEntryFormData}) => {
 
   const navigate = useNavigate();
 
+  // Formats and sets the default value of the date picker to today's date.
+  const today = new Date();
+  const date = today.setDate(today.getDate()); 
+  const defaultDateValue = new Date(date).toISOString().split('T')[0] // yyyy-mm-dd
+
   const [newEntry, setnewEntry] = useState({
-    title: "",
-    date: "",
-    entry:"",
-    hours: "",
-    language:"",
-    framework:"",
-    notes:"",
-    user: 1
+    title: null,
+    date: defaultDateValue,
+    entry: null,
+    hours: null,
+    language: null,
+    framework: null,
+    notes: null,
   });
 
 
   const updateEntry = (key, value) => {
-    console.log("saving html!");
     setnewEntry((prev) =>{
-  return {...prev, [key]:value}
+      return {...prev, [key]:value}
     })
   }
 
@@ -144,15 +147,16 @@ const TipTap = ({setEntryFormData}) => {
     extensions: [
       StarterKit,
     ],
+    onUpdate({ editor }) {
+      const html = editor.getHTML();
+      updateEntry("entry", html);
+    },
     content: ``,
   })
 
   // Save entry to the db
   const save = () => {
-    const html = editor.getHTML();
-    updateEntry("entry", html);
-    console.log(html);
-
+    console.log("Current State: ", newEntry)
     axios.post('/api/entries', newEntry)
     .then((response) => {
       navigate("/entriesfeed")
@@ -163,15 +167,11 @@ const TipTap = ({setEntryFormData}) => {
     });
   }
 
-  // Formats and sets the default value of the date picker to today's date.
-  const today = new Date();
-  const date = today.setDate(today.getDate()); 
-  const defaultValue = new Date(date).toISOString().split('T')[0] // yyyy-mm-dd
-
   // Get content from the text editor as html
   const getHtml = () => {
     const html = editor.getHTML();
-    return html;
+      console.log("Editor html: ", html);
+      return html;
   }
 
   return (
@@ -190,21 +190,24 @@ const TipTap = ({setEntryFormData}) => {
           placeholder="Entry Title"
           value={newEntry.title} 
           onChange={(event) => updateEntry("title", event.target.value)}
-          className="input input-bordered w-full max-w-xs" 
+          className="input input-bordered w-full max-w-xs"
+          required
         />
         <input 
           type="date" 
-          defaultValue={defaultValue}
+          defaultValue={defaultDateValue}
           value={newEntry.date}  
           onChange={(event) => updateEntry("date", event.target.value)}
-          placeholder="Type here" 
           className="input input-bordered w-full max-w-xs" 
         />
         </div>
         {/* Editor ToolBar - bold, italic, code snippet, etc... */}
         <MenuBar editor={editor} className="w-2/3"/>
         {/* Editor */}
-        <EditorContent editor={editor} className="textarea textarea-bordered w-2/3 mt-3 text-xl"/>
+        <EditorContent 
+          editor={editor}
+          className="textarea textarea-bordered w-2/3 mt-3 text-xl"
+          />
         <div className="w-2/3 flex gap-x-3 mt-3">
         <select 
           className="select select-bordered w-auto max-w-xs" 
@@ -252,8 +255,11 @@ const TipTap = ({setEntryFormData}) => {
           <button type="submit" className="btn btn-primary w-32">Save</button>
         </div>
       </form>
+        <div className='flex w-2/3 justify-end mt-3 mb-10'>
+          <button onClick={getHtml} className="btn btn-primary w-32">Print HTML</button>
+        </div>
       </div>
   )
 }
 
-export default TipTap
+export default NewEntry

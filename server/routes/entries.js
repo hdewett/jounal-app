@@ -24,11 +24,11 @@ module.exports = db => {
 
   // Create new entry
   router.post('/entries', (req, res) => {
-    const { title, entry, hours, language, framework, notes } = req.body;
+    const { title, entry, hours, language, framework, notes, date } = req.body;
     
-    console.log("+_+++++++++++++++++++++++", req.body);
+    console.log("Request Body: ", req.body);
     db.query(
-      `INSERT INTO entries (title, entry, hours, language_id, framework_id, notes) VALUES ($1,$2,$3,$4,$5,$6) returning *;` ,[title, entry, hours, language, framework, notes]
+      `INSERT INTO entries (title, entry, hours, language_id, framework_id, notes, date) VALUES ($1,$2,$3,$4,$5,$6,$7) returning *;` ,[title, entry, hours, language, framework, notes, date]
     ).then(({ rows: entries }) => {
       console.log(entries, "$$$$");
       return res.status(200).json(entries);
