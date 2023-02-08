@@ -62,11 +62,19 @@ router.put("/entries/:id", (request, response) => {
 
   // Create new entry
   router.post('/entries', (req, res) => {
+<<<<<<< HEAD
+    const { title, entry, hours, language, framework, notes, date } = req.body;
+    
+    console.log("Request Body: ", req.body);
+    db.query(
+      `INSERT INTO entries (title, entry, hours, language_id, framework_id, notes, date) VALUES ($1,$2,$3,$4,$5,$6,$7) returning *;` ,[title, entry, hours, language, framework, notes, date]
+=======
     const { title, date, entry, hours, language, framework, notes } = req.body;
     
     console.log( req.body);
     db.query(
       `INSERT INTO entries (title, date, entry, hours, language_id, framework_id, notes) VALUES ($1,$2,$3,$4,$5,$6,$7) returning *;` ,[title, date, entry, hours, language, framework, notes]
+>>>>>>> main
     ).then(({ rows: entries }) => {
       console.log(entries);
       return res.status(200).json(entries);
