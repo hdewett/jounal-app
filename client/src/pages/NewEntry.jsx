@@ -10,16 +10,16 @@ function NewEntry() {
     title: "",
     date: "",
     entry:"",
-    hours: "",
-    language:"",
-    framework:"",
-    notes:""
+    hours: "1",
+    language:"1",
+    framework:"1",
+    notes:" "
 
 
   });
   
 const save = () => {
-
+  console.log(newEntry)
   axios.post('/api/entries', 
     newEntry
   
