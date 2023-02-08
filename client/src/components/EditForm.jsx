@@ -1,46 +1,43 @@
 import React from "react";
-import { Outlet } from "react-router";
 import  { useState, useEffect } from 'react';
 import axios from  'axios';
 import { useNavigate } from "react-router-dom";
 
-function NewEntry() {
+export default function EditForm (props){
   const navigate = useNavigate();
   const [newEntry, setnewEntry] = useState({
-    title: "",
-    date: "2023-02-08",
-    entry:"",
-    hours: "1",
-    language:"1",
-    framework:"1",
-    notes:" "
+    title: props.title,
+    date: props.date,
+    entry: props.entry,
+    hours: props.hours,
+    language: props.language,
+    framework: props.framework,
+    notes:props.notes
+  }); 
 
-
-  });
+  const save = () => {
+    axios.put('/api/entries/'+props.id, 
+      newEntry
+    
+    )
+    .then(function (response) {
+      navigate("/entriesfeed")
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   
-const save = () => {
-  console.log(newEntry)
-  axios.post('/api/entries', 
-    newEntry
-  
-  )
-  .then(function (response) {
-    navigate("/entriesfeed")
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
+  const updateEntry = (key,value) => {
+    setnewEntry((prev) =>{
+  return {... prev, [key]:value}
+    })
+  }
 
-const updateEntry = (key,value) => {
-
-  setnewEntry((prev) =>{
-return {... prev, [key]:value}
-  })
-}
-  return (
-    <div data-theme="emerald"className="lg:justify-center lg:align-middle lg:flex px-14">
+  return(
+    <>
+        <div data-theme="emerald"className="lg:justify-center lg:align-middle lg:flex px-14">
     <form className="w-[100vw]" onSubmit={((event) =>{
       event.preventDefault()
       save()
@@ -49,7 +46,7 @@ return {... prev, [key]:value}
       <div className="flex">
         <div className="flex gap-2 w-3/4 p-4 bg-gray-500 text-white">
           <h3>Title</h3>
-          <input className="w-full text-black " value={newEntry.title
+          <input className="w-full text-black "  value={newEntry.title
           }  onChange={(event) => updateEntry("title", event.target.value)}></input>
         </div>
         <div className="flex gap-2 w-1/4 p-4 bg-gray-500 text-white">
@@ -83,8 +80,11 @@ return {... prev, [key]:value}
       <div className="flex">
         <div className=" gap-2 w-1/4 p-4 bg-gray-600 text-white">
           <h3>Language</h3>
-          <select className="text-black w-full" name="cars" id="cars"  value={newEntry.language
-          }  onChange={(event) => updateEntry("language", event.target.value)}>
+          <select className="text-black w-full" 
+          name="language" id="language" 
+          value={newEntry.language} 
+          onChange={(event) => updateEntry("language", event.target.value)}
+          >
             <option value="1">Javascript</option>
             <option value="2">Python</option>
             <option value="3">Java</option>
@@ -93,10 +93,10 @@ return {... prev, [key]:value}
         </div>
         <div className=" gap-2 w-1/4 p-4 bg-gray-600 text-white">
           <h3>Framework</h3>
-          <select className="text-black w-full" name="cars" id="cars"  value={newEntry.framework
+          <select className="text-black w-full" name="framework" id="framework"  value={newEntry.framework
           }  onChange={(event) => updateEntry("framework", event.target.value)}>
             <option value="1"> React</option>
-            <option value="2"> Django</option>
+            <option value="2">Django</option>
             <option value="3"> Kotlin</option>
            
           </select>
@@ -114,12 +114,11 @@ return {... prev, [key]:value}
       <div className="flex justify-between">
         <div></div>
         <div className="bg-gray-400 text-black my-3 absolute bottom-100 right-90">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded  ">Save</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded  ">Update</button>
         </div>
       </div>
     </form>
   </div>
+    </>
   )
 }
-
-export default NewEntry;
