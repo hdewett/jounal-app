@@ -33,7 +33,7 @@ router.get("/entries/:id", (request, response) => {
         language_id, 
         framework_id, 
         notes
-        FROM entries WHERE id = $1::integer`, [
+        FROM entries WHERE id = $1::integer;`, [
     request.params.id
   ]).then(({ rows: entries }) => {
     console.log("retrieving entry");
