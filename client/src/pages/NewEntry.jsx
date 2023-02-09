@@ -24,9 +24,9 @@ const NewEntry = ({setEntryFormData}) => {
     notes: null,
   });
 
-
   const updateEntry = (key, value) => {
     setnewEntry((prev) =>{
+      console.log("State Updating: ", key, value);
       return {...prev, [key]:value}
     })
   }
@@ -75,7 +75,7 @@ const NewEntry = ({setEntryFormData}) => {
         />
         </div>
         <div className="w-2/3">
-            <TinyMCE />
+            <TinyMCE updateEntry={updateEntry}/>
         </div>
         <div className="w-2/3 flex gap-x-3 mt-3">
         <select 
@@ -125,7 +125,6 @@ const NewEntry = ({setEntryFormData}) => {
         </div>
       </form>
       </div>
-      <TinyMCE className="tiny-mce" />
       </>
   )
 }
