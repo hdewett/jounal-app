@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import { Outlet } from "react-router";
 import axios from "axios";
 import { useParams } from "react-router";
+import * as IoIcons from "react-icons/io";
+import { Link } from "react-router-dom";
 
 
 function ViewEntry(props) {
@@ -37,13 +39,26 @@ function ViewEntry(props) {
   console.log("viewEntry", viewEntry);
   return (
     <div className="my-6 mx-20">
-      
+
       <main class="flex h-full w-full flex-col ">
-  <div class="flex h-auto">
-  <article className="prose lg:prose-lg">
-    <div className="flex justify-end">
+
+        <div class="flex h-auto">
+
+  <article className="prose xl:prose-xl">
+    <div className="flex">
+    <div className="flex w-1/2 justify-start pb-4">
+						<Link to="/entriesfeed"><span className="btn btn-sm rounded-full cursor-pointer hover:scale-105 hover:bg-primary transition-all"> <IoIcons.IoMdArrowRoundBack size={20} />
+					</span></Link>
+				</div>
+
+    <div className="flex w-1/2 justify-end">
     <span className="flex font-medium">{viewEntry.date}</span>
     </div>
+    
+        </div>
+
+
+
     <h1>{viewEntry.title}</h1>
 
 
