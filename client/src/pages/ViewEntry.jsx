@@ -37,30 +37,10 @@ function ViewEntry(props) {
   console.log("viewEntry", viewEntry);
   return (
     <div className="my-6 mx-20">
-    <div className="overflow-x-auto">
-  <table className="table w-3/4 border border-base-200">
-  {/* <!-- head --> */}
-  <thead>
-    <tr>
-      <th>Hours</th>
-      <th>Language</th>
-      <th>Framework</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    {/* <!-- row 1 --> */}
-    <tr>
-      <th>{viewEntry.hours}</th>
-      <td>{viewEntry.language}</td>
-      <td>{viewEntry.framework}</td>
-      <td>{viewEntry.notes}</td>
-    </tr>
-    </tbody>
-</table>
-</div>
-
-    <article className="prose lg:prose-lg">
+      
+      <main class="flex h-full w-full flex-col ">
+  <div class="flex h-auto">
+  <article className="prose lg:prose-lg">
     <div className="flex justify-end">
     <span className="flex">{viewEntry.date}</span>
     </div>
@@ -72,6 +52,42 @@ function ViewEntry(props) {
         </p>
     <Outlet />
     </article>
+
+    <div className="overflow-x-auto">
+  <table className="table w-3/4">
+  {/* <!-- head --> */}
+  <tbody>
+    {/* <!-- row 1 --> */}
+    <tr>
+      <th className="bg-base-200">Hours</th>
+      <td className="border border-bg-200">{viewEntry.hours}</td>
+    </tr>
+
+    <tr>
+      <th className="bg-base-200">Language</th>
+      <td className="border border-bg-200">{viewEntry.language}</td>
+    </tr>
+
+    <tr>
+      <th className="bg-base-200">Framework</th>
+      <td className="border border-bg-200">{viewEntry.framework}</td>
+    </tr>
+
+    <tr>
+      <th className="bg-base-200">Notes</th>
+      <td className="border border-bg-200">{viewEntry.notes}</td>
+    </tr>
+    
+    </tbody>
+</table>
+</div>
+  </div>
+</main>
+
+
+
+    
+
   </div>
 
   )
