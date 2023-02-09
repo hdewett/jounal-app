@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import * as IoIcons from "react-icons/io";
 import { Link } from "react-router-dom";
+const parse = require('html-react-parser');
 
 
 function ViewEntry(props) {
@@ -63,7 +64,7 @@ function ViewEntry(props) {
 
 
         <p>
-        {viewEntry.entry}
+        {parse(viewEntry.entry)}
         </p>
     <Outlet />
     </article>
