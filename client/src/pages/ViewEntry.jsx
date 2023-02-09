@@ -42,7 +42,7 @@ function ViewEntry(props) {
   <div class="flex h-auto">
   <article className="prose lg:prose-lg">
     <div className="flex justify-end">
-    <span className="flex">{viewEntry.date}</span>
+    <span className="flex font-medium">{viewEntry.date}</span>
     </div>
     <h1>{viewEntry.title}</h1>
 
@@ -52,6 +52,8 @@ function ViewEntry(props) {
         </p>
     <Outlet />
     </article>
+
+    <section class="flex h-96 w-24 items-center justify-center"></section>
 
     <div className="overflow-x-auto">
   <table className="table w-3/4">
