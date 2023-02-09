@@ -23,6 +23,7 @@ import SideNavBar from './components/SideNavBar';
 import CalendarSmall from './components/CalendarSmall'
 import EditEntry from './pages/EditEntry'
 import TinyMCE from './components/TinyMCE';
+import EntryForm2 from './components/EntryForm2';
 
 function App() {
 
@@ -32,8 +33,6 @@ function App() {
     setDarkMode(!darkModeState);
     console.log(darkModeState);
   }
-
-  const [entryFormData, setEntryFormData] = useState('');
 
   const AppLayout = () => (
     <section data-theme={darkModeState ? "emerald" : "dark"}>
@@ -46,12 +45,11 @@ function App() {
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/Entries" element={<Entries />} />
-        <Route path="/newEntry" element={<NewEntry />} />
+        <Route path="/newEntry" element={<EntryForm2 />} />
         <Route path="/stats" element={<Stats />} />
         <Route path="/entriesfeed" element={<EntriesFeed />} />
         <Route path="/calendar" element={<CalendarSmall/>} />
         <Route path="/entry/:id" element={<EditEntry/>} />
-        <Route path="/editor" element={<TinyMCE />} />
       </Route>
       
     )

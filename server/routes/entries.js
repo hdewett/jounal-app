@@ -61,6 +61,32 @@ module.exports = db => {
   });
 
   // Create new entry
+  router.put('/entries/:id', (req, res) => {
+    const { title, entry, hours, language, framework, notes, date } = req.body;
+    
+    db.query(
+      `UPDATE entries
+       SET
+       title = $1, 
+       entry = $2, 
+       hours = $3, 
+       language_id = $4, 
+       framework_id = $5, 
+       notes = $6, 
+       date = $7
+       WHERE id = $8;` ,[title, entry, hours, language, framework, notes, date, req.params.id]
+    ).then(({ rows: entries }) => {
+      console.log(entries);
+      return res.status(200).json(entries);
+  
+    })
+      .catch(error => {
+        console.log(`There was an ${error}`);
+        res.status(500).send;
+      });
+  });
+
+  // Update existing entry
   router.post('/entries', (req, res) => {
     const { title, entry, hours, language, framework, notes, date } = req.body;
     
@@ -76,8 +102,9 @@ module.exports = db => {
         console.log(`There was an ${error}`);
         res.status(500).send;
       });
-  
   });
+
+  
 
   // Delete entry
   router.delete("/entries/:id", (request, response) => {
