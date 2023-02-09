@@ -21,6 +21,7 @@ import NewEntry from './pages/NewEntry';
 import Stats from './pages/Stats';
 import SideNavBar from './components/SideNavBar';
 import CalendarSmall from './components/CalendarSmall'
+import ViewEntry from './pages/ViewEntry';
 import EditEntry from './pages/EditEntry'
 import TinyMCE from './components/TinyMCE';
 import EntryForm2 from './components/EntryForm2';
@@ -49,6 +50,7 @@ function App() {
         <Route path="/stats" element={<Stats />} />
         <Route path="/entriesfeed" element={<EntriesFeed />} />
         <Route path="/calendar" element={<CalendarSmall/>} />
+        <Route path="/viewentry/:id" element={<ViewEntry/>} />
         <Route path="/entry/:id" element={<EditEntry/>} />
       </Route>
       

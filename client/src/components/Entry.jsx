@@ -1,5 +1,6 @@
 import React from 'react';
 import DeleteEntry from './DeleteEntry';
+import { Link } from 'react-router-dom';
 
 export default function Entry(props) {
 
@@ -8,7 +9,7 @@ export default function Entry(props) {
     <>
     <tr className="cursor-pointer">
       <th>{props.id}</th>
-      <td>{props.title}</td>
+      <td><Link to={'/viewentry/' + props.id}>{props.title}</Link></td>
       <td>{props.date}</td>
       {/* Edit and delete buttons */}
       <td className="">
