@@ -1,16 +1,15 @@
 import React from "react";
-import { Outlet } from "react-router";
 import  { useState, useEffect } from 'react';
 import axios from  'axios';
-import { useNavigate } from "react-router-dom";
 import { useParams } from 'react-router';
 import EditForm from "../components/EditForm";
+import EntryForm2 from "../components/EntryForm2";
 
 function EditEntry() {
   const [entryData, setEntryData] = useState([]);
   // Pull id
   const { id } = useParams();
-  const entriesUrl = "/api/entries/"+id ;
+  const entriesUrl = "/api/entries/"+ id ;
   
   useEffect(() => {
     getEntriesDataWithAxios();
@@ -19,14 +18,14 @@ function EditEntry() {
   const getEntriesDataWithAxios = async () => {
     const response = await axios.get(entriesUrl);
     setEntryData(response.data);
-    // console.log(response.data)
+    console.log(entryData);
   };
   
   {/* map through entrData function */}
   return (
     <>
     {entryData.map((item) => (
-      <EditForm 
+      <EntryForm2 
       key={item.id}
       id={item.id}
       title={item.title}

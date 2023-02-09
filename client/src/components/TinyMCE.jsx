@@ -4,21 +4,13 @@ import { Editor } from '@tinymce/tinymce-react';
 export default function App(props) {
   const editorRef = useRef(null);
 
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
-
-  const [editorValue, setEditorValue] = useState("");
-
   return (
     <>
       <Editor
         className="w-screen"
         apiKey="tlmdigq0ng9fhdtdoh1dg4x2yvlpol8cyfebn0gse6eyf7x0"
         onInit={(evt, editor) => editorRef.current = editor}
-        initialValue=""
+        initialValue={props.existingValues}
         onEditorChange={(newValue, editor) => {
           props.updateEntry("entry", newValue);
         }}
@@ -47,7 +39,6 @@ export default function App(props) {
             toolbar: "codesample bold italic | alignleft aligncenter alignright | undo redo "
         }}
       />
-      <button onClick={log}>Log Editor</button>
     </>
   );
 }
