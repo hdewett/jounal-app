@@ -13,6 +13,32 @@ VALUES
 INSERT INTO entries (title, date, entry, language_id, framework_id, hours, notes)
 VALUES
 
-  ('Using Axios', '2022-02-03', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris imperdiet arcu ac ipsum sagittis, a porta augue iaculis. Maecenas ac odio a ex faucibus mattis in ac magna. Vestibulum viverra mauris metus, non volutpat quam tincidunt vehicula. Duis maximus tincidunt quam hendrerit semper. Cras suscipit, nibh nec consectetur tincidunt, neque lectus sagittis felis, id tempus enim ipsum sed magna. Nam vitae pretium elit. Ut volutpat pellentesque turpis, vel faucibus lacus porta ut.', 1, 1, 3, 'React Routers' ),
-  ('How do promises work??', '2022-02-02', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris imperdiet arcu ac ipsum sagittis, a porta augue iaculis. Maecenas ac odio a ex faucibus mattis in ac magna. Vestibulum viverra mauris metus, non volutpat quam tincidunt vehicula. Duis maximus tincidunt quam hendrerit semper. Cras suscipit, nibh nec consectetur tincidunt, neque lectus sagittis felis, id tempus enim ipsum sed magna. Nam vitae pretium elit. Ut volutpat pellentesque turpis, vel faucibus lacus porta ut.', 2, 2, 1, 'Classes and methods' ),
-  ('Asynchronous Promgramming for Beginners', '2022-02-01', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris imperdiet arcu ac ipsum sagittis, a porta augue iaculis. Maecenas ac odio a ex faucibus mattis in ac magna. Vestibulum viverra mauris metus, non volutpat quam tincidunt vehicula. Duis maximus tincidunt quam hendrerit semper. Cras suscipit, nibh nec consectetur tincidunt, neque lectus sagittis felis, id tempus enim ipsum sed magna. Nam vitae pretium elit. Ut volutpat pellentesque turpis, vel faucibus lacus porta ut.', 3, 3, 4, 'android' )
+  ('Learning to Program', '2022-02-03', '<p>If you are just learning how to <strong>program,&nbsp;</strong>then you should definitely read this entire article.</p>
+    <p>To write a quick Javascript program all you need to do is:</p>
+    <pre class="language-javascript"><code>// This is a comment
+
+    // This is how you print something to the console.
+
+    console.log("Neat!")
+
+    const getUserData = (data) =&gt; {
+      const addTwo - data.map( (x) =&gt; x += 2);
+      return addTwo;
+    }</code></pre>
+    <p>cool right!?</p>', 1, 1, 3, 'Some cool Notes' ),
+
+  ('How do promises work??', '2022-02-02', '<pre class="language-css"><code>const updateEntry = (key, value) =&gt; {
+    setnewEntry((prev) =&gt;{
+    console.log("State Updating: ", key, value);
+    return {...prev, [key]:value}
+    })
+    }</code></pre>', 2, 2, 1, 'Classes and methods' ),
+  
+  ('Asynchronous Promgramming for Beginners', '2022-02-01', '<p>What the heck is <strong>asynchronous programming</strong> and how does it work!?</p>
+    <p>Here is a basic example of some asynchronous code:</p>
+    <pre class="language-javascript"><code>const handleDelete = async (id) =&gt; {
+        await axios.delete(`/api/entries/` + id);
+        navigate("/entriesfeed")
+        console.log("Deleting Entry ID: ", id);
+      }</code></pre>
+    <p>Check out our other articles for more <em>tips!</em></p>', 3, 3, 4, 'Cool notes bro' )

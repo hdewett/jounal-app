@@ -8,3 +8,8 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+.tiny-mce {
+  display: flex;
+  width: 800px;
+}
