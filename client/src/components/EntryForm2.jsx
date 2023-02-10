@@ -19,16 +19,15 @@ const EntryForm2 = (props) => {
     title: props.title ? props.title : null,
     date: props.date ? props.date : defaultDateValue,
     entry: props.entry ? props.entry : null,
+    private: props.private === false ? props.private : true,
     hours: props.hours ? props.hours : null,
     language: props.language ? props.language : null,
     framework: props.framework ? props.framework : null,
     notes: props.notes ? props.notes : null,
   });
 
-
   const updateEntry = (key, value) => {
     setnewEntry((prev) =>{
-      console.log("State Updating: ", key, value);
       return {...prev, [key]:value}
     })
   }
@@ -94,6 +93,16 @@ const EntryForm2 = (props) => {
           onChange={(event) => updateEntry("date", event.target.value)}
           className="input input-bordered w-full max-w-xs" 
         />
+        <select 
+          className="select select-bordered w-auto max-w-xs" 
+          name="private" 
+          id="private"  
+          value={newEntry.private}  
+          onChange={(event) => updateEntry("private", event.target.value)}>
+            <option disabled selected>Entry Visibilty</option>
+            <option value={true}>Private</option>
+            <option value={false}>Public</option>
+        </select>
         </div>
         <div className="w-full px-10">
             <TinyMCE updateEntry={updateEntry} existingValues={props.entry}/>

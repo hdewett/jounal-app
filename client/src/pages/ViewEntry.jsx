@@ -30,7 +30,7 @@ function ViewEntry(props) {
   const viewEntry = {
     title: entriesData.title,
     date: entriesData.date,
-    entry: entriesData.entry,
+    entry: entriesData.entry ? entriesData.entry : "",
     hours: entriesData.hours,
     language: entriesData.language_name,
     framework: entriesData.framework_name,
@@ -64,7 +64,7 @@ function ViewEntry(props) {
 
 
         <p>
-        {(viewEntry.entry)}
+        {parse(viewEntry.entry)}
         </p>
     <Outlet />
     </article>

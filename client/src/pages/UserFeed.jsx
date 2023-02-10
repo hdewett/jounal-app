@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import FeedEntry from "../components/FeedEntry";
 
-function Stats() {
+function UserFeed() {
+
+  const [userFeedData, setUserFeedData] = useState([]);
+
+  useEffect(() => {
+    getEntriesDataWithAxios();
+  }, []);
+
+  const entriesUrl = "/api/entries/public";
+
+  const getEntriesDataWithAxios = async () => {
+    const response = await axios.get(entriesUrl);
+    setUserFeedData(response.data);
+    console.log("User Feed Data: ", userFeedData);
+  };
+
+  const userFeedArray = userFeedData.map((entry) => {
+
+    return <FeedEntry 
+      key={entry.id}
+      id={entry.id}
+      title={entry.title}
+      notes={entry.notes}
+      private={entry.private}
+      date={entry.date}
+      name={entry.name}
+      avatar_img={entry.avatar_img}
+    />
+
+  })
+
   return (
     <section class="flex h-auto w-full bg-gray-100">
 
@@ -23,10 +54,10 @@ function Stats() {
       </div>
       {/* Articles CArousel */}
       <div className="carousel w-full rounded-lg h-48">
-        <div id="item1" className="carousel-item w-full relative">
-          <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="test" className="w-full object-none rounded-lg" />
+      <div id="item1" className="carousel-item w-full relative">
+          <img src="https://images.pexels.com/photos/1037993/pexels-photo-1037993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="test" className="w-full object-none rounded-lg" />
           <div className="absolute bottom-0 right-0 bg-white p-3 bg-opacity-90 rounded-lg mb-2 mr-2">
-            <p className="text-xl text-primary font-bold opacity-100">10 Reasons why you should learn python</p>
+            <p className="text-xl text-primary font-bold opacity-100">Asynchronous Programming Explained</p>
           </div>
         </div>
         <div id="item2" className="carousel-item w-full relative">
@@ -42,11 +73,11 @@ function Stats() {
           </div>
         </div>
         <div id="item4" className="carousel-item w-full relative">
-          <img src="https://images.pexels.com/photos/1037993/pexels-photo-1037993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="test" className="w-full object-none rounded-lg" />
+          <img src="https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="test" className="w-full object-none rounded-lg" />
           <div className="absolute bottom-0 right-0 bg-white p-3 bg-opacity-90 rounded-lg mb-2 mr-2">
-            <p className="text-xl text-primary font-bold opacity-100">Asynchronous Programming Explained</p>
+            <p className="text-xl text-primary font-bold opacity-100">10 Reasons why you should learn python</p>
           </div>
-        </div> 
+        </div>
         </div> 
         <div className="flex justify-center w-full py-2 gap-2">
           <a href="#item1" className="btn btn-xs">1</a> 
@@ -55,13 +86,11 @@ function Stats() {
           <a href="#item4" className="btn btn-xs">4</a>
         </div>
     {/* End articles carousel */}
+      <div className="flex items-start w-full mb-2">
+        <h1 className="tracking-wide font-bold text-2xl prose mt-10">Checkout What Your Friends Are Talking About!</h1>
+      </div>
       <div className="flex flex-col w-full">
-        <FeedEntry />
-        <FeedEntry />
-        <FeedEntry />
-        <FeedEntry />
-        <FeedEntry />
-        <FeedEntry />
+        {userFeedArray}
       </div>
       </section>
 
@@ -75,7 +104,7 @@ function Stats() {
               <div className="flex gap-x-2 items-center">
                 <div className="avatar flex items-center gap-x-3">
                   <div className="w-12 mask mask-squircle">
-                    <img alt="test" src="https://images.pexels.com/photos/7829101/pexels-photo-7829101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                    <img alt="test" src="https://i.pinimg.com/564x/21/4f/d9/214fd92de6c271df2b7386e95f455180.jpg" />
                   </div>
                 </div>
                 <div>
@@ -92,11 +121,11 @@ function Stats() {
               <div className="flex gap-x-2 items-center">
                 <div className="avatar flex items-center gap-x-3">
                   <div className="w-12 mask mask-squircle">
-                    <img alt="test" src="https://images.pexels.com/photos/7829101/pexels-photo-7829101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                    <img alt="test" src="https://i.pinimg.com/564x/e0/1a/e7/e01ae709ab94fc47138ab75d79c34c69.jpg" />
                   </div>
                 </div>
                 <div>
-                  Hilora Dewitt
+                  Tom From Myspace
                 </div>
               </div>
               <p className="btn">Follow</p>
@@ -109,11 +138,11 @@ function Stats() {
               <div className="flex gap-x-2 items-center">
                 <div className="avatar flex items-center gap-x-3">
                   <div className="w-12 mask mask-squircle">
-                    <img alt="test" src="https://images.pexels.com/photos/7829101/pexels-photo-7829101.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                    <img alt="test" src="https://i.pinimg.com/564x/da/9a/34/da9a346fe6e5276526ccb98a9d6c573e.jpg" />
                   </div>
                 </div>
                 <div>
-                  Hilora Dewitt
+                  Ada Lovlace
                 </div>
               </div>
               <p className="btn">Follow</p>
@@ -125,4 +154,4 @@ function Stats() {
   )
 }
 
-export default Stats;
+export default UserFeed;
