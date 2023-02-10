@@ -123,6 +123,14 @@ const EntryForm2 = (props) => {
             <option value={1}>Javascript</option>
             <option value={2}>Python</option>
             <option value={3}>Java</option>
+            <option value={4}>PHP</option>
+            <option value={5}>Ruby</option>
+            <option value={6}>CSS</option>
+            <option value={7}>HTML</option>
+            <option value={8}>Typescript</option>
+            <option value={9}>C</option>
+            <option value={10}>C++</option>
+            <option value={11}>C#</option>
         </select>
         <select 
           className="select select-bordered w-auto max-w-xs"
@@ -132,8 +140,16 @@ const EntryForm2 = (props) => {
           onChange={(event) => updateEntry("framework", event.target.value)}>
             <option disabled selected>Framework</option>
             <option value={1}>React</option>
-            <option value={2}>Django</option>
-            <option value={3}>Kotlin</option>
+            <option value={2}>Angular</option>
+            <option value={3}>Vue</option>
+            <option value={4}>Rails</option>
+            <option value={5}>.NET</option>
+            <option value={6}>Express</option>
+            <option value={7}>Laravel</option>
+            <option value={8}>React-Native</option>
+            <option value={9}>Django</option>
+            <option value={10}>Svelte</option>
+            <option value={11}>Kotlin</option>
         </select>
         <select 
           className="select select-bordered w-auto max-w-xs"
