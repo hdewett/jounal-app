@@ -8,9 +8,9 @@ export default function Entry(props) {
   return (
     <>
     <tr className="cursor-pointer">
-      <th>{props.id}</th>
+      <th><Link to={'/viewentry/' + props.id}>{props.id}</Link></th>
       <td><Link to={'/viewentry/' + props.id}>{props.title}</Link></td>
-      <td>{props.date}</td>
+      <td><Link to={'/viewentry/' + props.id}>{props.date}</Link></td>
       {/* Edit and delete buttons */}
       <td className="">
         <div className='flex gap-x-3'>
