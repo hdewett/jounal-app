@@ -94,6 +94,65 @@ module.exports = db => {
       });
   });
 
+  // Get sum of  entries, Get total languages, Get amount of distinct languages, Get total wordcount:  to count individual entries add a WHERE userid = userid 
+router.get("/stats", (req, response) => {
+  Promise.all([
+    db.query(`SELECT 
+    SUM(hours) 
+    FROM entries`),
+    db.query(`SELECT
+        DISTINCT language_id,
+        languages.name as language_name
+        FROM entries 
+        INNER JOIN languages on language_id = languages.id;`),
+    db.query(`SELECT
+        language_id, count(*) as language_amount,
+        languages.name as language_name
+        FROM entries   
+        INNER JOIN languages on language_id = languages.id
+        Group by language_name, language_id; `),
+    db.query(`SELECT 
+        id, 
+        title, 
+        entry,
+        notes
+        FROM entries;` )
+  ])
+    .then((results) => {
+      console.log(results[0].rows[0].sum, results[1].rows, results[2].rows)
+      response.send({
+        hours: results[0].rows[0].sum,
+        languages: results[1].rows,
+        distinctLanguage: results[2].rows,
+        entries: results[3].rows
+      });
+    })
+    .catch(error => {
+      console.log(`There was an ${error}`);
+      response.status(500).send;
+    });
+});
+
+
+// Get specific entry for stats
+router.get("/stats/:id", (request, response) => {
+  db.query(`SELECT 
+      id, 
+      title, 
+      entry,
+      notes,
+      FROM entries WHERE id = $1`, [
+    request.params.id
+  ]).then(({ rows: entries }) => {
+    console.log("retrieving entry");
+    return response.json(entries);
+  })
+    .catch(error => {
+      console.log(`There was an ${error}`);
+      response.status(500).send;
+    });
+});
+
   // Get specific entry
   router.get("/entries/:id", (request, response) => {
     db.query(`SELECT 
@@ -160,6 +219,7 @@ module.exports = db => {
       });
   });
 
+
   // Create a new entry
   router.post('/entries', (req, res) => {
     const { title, entry, hours, language, framework, notes, date, private } = req.body;
@@ -178,7 +238,6 @@ module.exports = db => {
       });
   });
 
-  
 
   // Delete entry
   router.delete("/entries/:id", (request, response) => {

@@ -3,23 +3,26 @@ import { Editor } from '@tinymce/tinymce-react';
 
 export default function App(props) {
   const editorRef = useRef(null);
-  // const checkForDelete = (e) => {
-  //   if (e.keyCode === 8) {
-  //     console.log('delete');
-  // } else {
-  //   props.updateCount();
-  // }
-  // }
+
+  const charCount = (editor) => editor.getContent({ format: "text" }).length;
+  const [count, setCount] = React.useState(0);
 
   return (
     <>
       <Editor
         className="w-screen"
         apiKey="tlmdigq0ng9fhdtdoh1dg4x2yvlpol8cyfebn0gse6eyf7x0"
-        onInit={(evt, editor) => editorRef.current = editor}
+        onInit={(evt, editor) => {editorRef.current = editor 
+        }}
+
         initialValue={props.existingValues}
         onEditorChange={(newValue, editor) => {
+          const cCount = charCount(editor);
           props.updateEntry("entry", newValue);
+          setCount(cCount)
+          props.updateCount(newValue)
+          console.log(props.newEntry)
+        
         }}
         init={{
           height: 500,

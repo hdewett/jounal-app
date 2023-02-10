@@ -32,6 +32,10 @@ const EntryForm2 = (props) => {
     })
   }
 
+  const updateCharCount = (values) => {
+  updateEntry("charcount" , values ? values.replace( /(<([^>]+)>)/ig, '').length : 0)
+  console.log(newEntry.charcount)
+  }
   const handleDelete = async (id) => {
     await axios.delete('/api/entries/' + id);
     navigate("/entries")
@@ -104,8 +108,9 @@ const EntryForm2 = (props) => {
             <option value={false}>Public</option>
         </select>
         </div>
-        <div className="w-full px-10">
-            <TinyMCE updateEntry={updateEntry} existingValues={props.entry}/>
+
+        <div className="w-2/3">
+            <TinyMCE updateEntry={updateEntry} existingValues={props.entry} updateCount={updateCharCount} newEntry={newEntry}/>
         </div>
         <div className="w-2/3 flex gap-x-3 mt-3">
         <select 
