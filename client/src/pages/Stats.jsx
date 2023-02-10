@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Outlet } from "react-router";
 import { Chart } from "react-google-charts";
+import { wordCount } from "../helpers/wordCount";
 
 //as opposed to many maps
 // const func=(key)=>{
@@ -19,17 +20,33 @@ import { Chart } from "react-google-charts";
       hours:0,
       languages: [],
       distinctLanguage: [],
+      entries: [],
 
     });
     console.log("DISTINCT LANGUAGE HERE", loadData.distinctLanguage)
+
+    const [totalWords, setTotalWords] = useState(0)
+  console.log(loadData);
+  useEffect(() => {
+    getEntriesDataWithAxios();
+  }, []);
+
 
     useEffect(() => {
       getEntriesDataWithAxios();
     }, []);
     
     const getEntriesDataWithAxios = async () => {
-      const response = await axios.get(entriesUrl)
-      setLoadData(response.data)}
+      const response = await axios.get(entriesUrl);
+      setLoadData(response.data);
+      let total = 0
+      for (const word of response.data.entries ) {
+        total+= wordCount(word.entry)
+       
+  
+      }
+      setTotalWords(total)
+    };
 
   
     return(
@@ -39,7 +56,7 @@ import { Chart } from "react-google-charts";
   
       <div className="stat">
         <div className="stat-title">Total Words</div>
-        <div className="stat-value">31K</div>
+        <div className="stat-value">{totalWords}</div>
         <div className="stat-desc">Words Typed</div>
       </div>
       

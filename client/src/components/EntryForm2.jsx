@@ -32,9 +32,13 @@ const EntryForm2 = (props) => {
     })
   }
 
+  const updateCharCount = (values) => {
+  updateEntry("charcount" , values ? values.replace( /(<([^>]+)>)/ig, '').length : 0)
+  console.log(newEntry.charcount)
+  }
   const handleDelete = async (id) => {
     await axios.delete('/api/entries/' + id);
-    navigate("/entries")
+    navigate("/entriesfeed")
     console.log("Deleting Entry ID: ", id);
   }
 
@@ -46,7 +50,7 @@ const EntryForm2 = (props) => {
     if (props.id) {
       axios.put(`/api/entries/${props.id}`, newEntry)
       .then((response) => {
-        navigate("/entries")
+        navigate("/entriesfeed")
         console.log(response);
       })
       .catch((error) => {
@@ -56,7 +60,7 @@ const EntryForm2 = (props) => {
       // Use post if its a new entry
       axios.post('/api/entries', newEntry)
       .then((response) => {
-        navigate("/entries")
+        navigate("/entriesfeed")
         console.log(response);
       })
       .catch((error) => {
@@ -95,7 +99,7 @@ const EntryForm2 = (props) => {
         />
         </div>
         <div className="w-2/3">
-            <TinyMCE updateEntry={updateEntry} existingValues={props.entry}/>
+            <TinyMCE updateEntry={updateEntry} existingValues={props.entry} updateCount={updateCharCount} newEntry={newEntry}/>
         </div>
         <div className="w-2/3 flex gap-x-3 mt-3">
         <select 

@@ -4,6 +4,7 @@ import { Outlet } from "react-router";
 import 'react-calendar/dist/Calendar.css';
 import CalendarSmall from "../components/CalendarSmall";
 import axios from "axios";
+import { wordCount } from "../helpers/wordCount";
 
 function Dashboard() {
 
@@ -13,17 +14,32 @@ function Dashboard() {
     hours:0,
     languages: [],
     distinctLanguage: [],
+    entries:[],
 
   });
-  console.log(loadData)
+
+  const [totalWords, setTotalWords] = useState(0)
+  console.log(loadData);
+  useEffect(() => {
+    getEntriesDataWithAxios();
+  }, []);
+ 
 
   useEffect(() => {
     getEntriesDataWithAxios();
   }, []);
   
   const getEntriesDataWithAxios = async () => {
-    const response = await axios.get(entriesUrl)
-    setLoadData(response.data)}
+    const response = await axios.get(entriesUrl);
+    setLoadData(response.data);
+    let total = 0
+    for (const word of response.data.entries ) {
+      total+= wordCount(word.entry)
+     
+
+    }
+    setTotalWords(total)
+  };
 
   return (
     <main class="flex h-full w-full flex-col px-14 my-10">
@@ -37,7 +53,7 @@ function Dashboard() {
   
       <div className="stat">
         <div className="stat-title">Total Words</div>
-        <div className="stat-value">31K</div>
+        <div className="stat-value">{totalWords}</div>
         <div className="stat-desc">Words Typed</div>
       </div>
       
