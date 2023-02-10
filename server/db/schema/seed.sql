@@ -2,11 +2,26 @@ INSERT INTO languages(name)
 VALUES
 ('Javascript'),
 ('Python'),
-('Java');
+('Java'),
+('PHP'),
+('Ruby'),
+('CSS'),
+('HTML'),
+('TypeScript'),
+('C'),
+('C++'),
+('C#');
 
 INSERT INTO frameworks(name)
 VALUES
 ('React'),
+('Angular'),
+('Vue'),
+('Rails'),
+('.NET'),
+('Express'),
+('Laravel'),
+('React-Native'),
 ('Django'),
 ('Kotlin');
 
@@ -66,7 +81,7 @@ VALUES
      is frequently used as an alternative to an&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else"><code>if...else</code></a>&nbsp;statement.</p> <pre class="language-javascript">
      <code>function getFee(isMember) { return (isMember ? $2.00 : $10.00); } console.log(getFee(true)); // Expected output: "$2.00" console.log(getFee(false)); // Expected output: "$10.00" console.log(getFee(null)); // Expected output:
       "$10.00" </code></pre> <p>&nbsp;</p> <p>The Syntax for the ternary operator is as follows:</p> <pre class="language-javascript"><code>condition ? exprIfTrue : exprIfFalse</code></pre> 
-      <p>Hope you enjoyed!</p>', false, 1, 1, 3, 'Once you get to know ternarys and are comfortable working with them, they are a game changer!', 2),
+      <p>Hope you enjoyed!</p>', false, 4, 4, 3, 'Once you get to know ternarys and are comfortable working with them, they are a game changer!', 2),
 
   ('Object Destructuring. The eight wonder of the world', '2022-02-07', '<h1>Destructuring assignment</h1>
     <div class="section-content">
@@ -86,7 +101,7 @@ VALUES
     console.log(rest);
     // Expected output: Array [30, 40, 50]
     </code></pre>
-    </div>', false, 1, 1, 3, 'Object destructuring is an amazing tool to add to your skillset. 
+    </div>', false, 5, 5, 3, 'Object destructuring is an amazing tool to add to your skillset. 
         Especially when using it to manage state in React.', 3),
 
   ('Getting to know CSS', '2022-02-07', '<h1>CSS: Cascading Style Sheets</h1>
@@ -104,7 +119,7 @@ VALUES
       display: flex;
       width: 800px;
     }</code></pre>
-    </div>', false, 1, 1, 3, 'If youre new to web development, be sure to read our CSS basics article to learn what CSS is and how to use it.', 6),
+    </div>', false, 6, 6, 3, 'If youre new to web development, be sure to read our CSS basics article to learn what CSS is and how to use it.', 6),
 
       ('The basics of HTML', '2022-02-09', '<h1>HTML: HyperText Markup Language</h1>
 <div class="section-content">
@@ -121,7 +136,170 @@ VALUES
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-</div>', false, 1, 1, 3, 'Think of html as the skeleton of your web pages!', 7);
+</div>', false, 7, 7, 3, 'Think of html as the skeleton of your web pages!', 7),
+
+('How do you use .filter in JS', '2022-02-12', '<h1>Array.prototype.filter()</h1>
+<div class="section-content">
+<p>The&nbsp;<strong><code>filter()</code></strong>&nbsp;method creates a&nbsp;<a href="https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy">shallow copy</a>&nbsp;of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.</p>
+<p>&nbsp;</p>
+<pre class="language-javascript"><code>const words = [spray, limit, elite, exuberant, destruction, present];
+
+const result = words.filter(word =&gt; word.length &gt; 6);
+
+console.log(result);
+// Expected output: Array ["exuberant", "destruction", "present"]</code></pre>
+</div>', false, 8, 8, 3, 'Think of html as the skeleton of your web pages!', 1),
+
+('How to create classes in Python', '2022-02-09', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    
+    ('How do I use power functions in Java?', '2022-02-04', '<p>How do I use power functions in Java?</p>
+      <p>Here is an example of using <em><strong>powers in Java:</strong></em></p>
+      <pre class="language-java"><code>Math.pow(4, 2)</code></pre>
+      <p>This is equivalent to typing 4 to the power of 2.</p>', false, 7, 7, 3, 'Think of html as the skeleton of your web pages!', 1),
+      
+      ('Building Native Apps in React-Native', '2022-02-09', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    
+    ('What is C# Operator Precedence?', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    
+    ('How to set up a workspace in Java Eclipse', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    
+    ('How to set up a workspace in Java Eclipse', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    
+
+    ('What is `This` Keyword in JavaScript? Here`s How to Implement It', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 5),
+    
+    ('How to Set Up Unit Testing for Java', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 10),
+    
+    ('What is Cypress testing?', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 9),
+    
+    ('Alternative Methods to Using Nested For Loops in Javascript', '2022-02-04', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 9),
+    
+    ('What is PostgreSQL', '2022-02-05', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 8),
+    
+    ('How to Avoid Infinite Loops in Javascript: Understanding Conditionals', '2022-02-06', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 7),
+    
+    ('Using HTTP Methods for RESTful Services', '2022-02-07', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
+    <p>&nbsp;</p>
+    <pre class="language-python"><code>class Person:
+      def init(self, name, age):
+        self.name = name
+        self.age = age
+
+    p1 = Person("John", 36)
+
+    print(p1.name)
+    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 8);
+
 
 
 

@@ -3,6 +3,26 @@ const router = express.Router();
 
 module.exports = db => {
 
+  // Get all entries for User 1 (default user), Limit 5
+  router.get("/entries/limit", (req, response) => {
+    db.query(
+      `SELECT 
+        id, 
+        title, 
+        to_char(date,'YYYY-MM-DD') AS date
+      FROM entries
+      WHERE user_id = 1
+      LIMIT 5;`
+    ).then(({ rows: entries }) => {
+      console.log("retrieving entries");
+      return response.json(entries);
+    })
+      .catch(error => {
+        console.log(`There was an ${error}`);
+        response.status(500).send;
+      });
+  });
+
   // Get all entries for User 1 (default user)
   router.get("/entries", (req, response) => {
     db.query(
@@ -11,8 +31,7 @@ module.exports = db => {
         title, 
         to_char(date,'YYYY-MM-DD') AS date
       FROM entries
-      WHERE user_id = 1
-      order by date desc;`
+      WHERE user_id = 1;`
     ).then(({ rows: entries }) => {
       console.log("retrieving entries");
       return response.json(entries);
