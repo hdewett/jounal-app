@@ -3,6 +3,13 @@ import { Editor } from '@tinymce/tinymce-react';
 
 export default function App(props) {
   const editorRef = useRef(null);
+  // const checkForDelete = (e) => {
+  //   if (e.keyCode === 8) {
+  //     console.log('delete');
+  // } else {
+  //   props.updateCount();
+  // }
+  // }
 
   return (
     <>
@@ -24,6 +31,7 @@ export default function App(props) {
           "searchreplace visualblocks code",
           "insertdatetime media table paste wordcount"
         ],
+          wordcount_cleanregex: /[0-9.(),;:!?%#$?\x27\x22_+=\\\/\-]*/g,
           codesample_languages: [
             { text: 'HTML/XML', value: 'markup' },
             { text: 'JavaScript', value: 'javascript' },

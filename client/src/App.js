@@ -16,6 +16,7 @@ import CalendarSmall from './components/CalendarSmall'
 import ViewEntry from './pages/ViewEntry';
 import EditEntry from './pages/EditEntry'
 import EntryForm2 from './components/EntryForm2';
+import UserFeed from './pages/UserFeed';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/calendar" element={<CalendarSmall/>} />
         <Route path="/viewentry/:id" element={<ViewEntry/>} />
         <Route path="/entry/:id" element={<EditEntry/>} />
+        <Route path="/userfeed" element={<UserFeed />} />
       </Route>
       
     )

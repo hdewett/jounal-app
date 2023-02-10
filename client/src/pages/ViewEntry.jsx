@@ -64,7 +64,7 @@ function ViewEntry(props) {
 
 
         <p>
-        {parse(viewEntry.entry)}
+        {(viewEntry.entry)}
         </p>
     <Outlet />
     </article>

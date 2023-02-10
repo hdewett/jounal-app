@@ -25,6 +25,7 @@ const EntryForm2 = (props) => {
     notes: props.notes ? props.notes : null,
   });
 
+
   const updateEntry = (key, value) => {
     setnewEntry((prev) =>{
       console.log("State Updating: ", key, value);
@@ -34,7 +35,7 @@ const EntryForm2 = (props) => {
 
   const handleDelete = async (id) => {
     await axios.delete('/api/entries/' + id);
-    navigate("/entriesfeed")
+    navigate("/entries")
     console.log("Deleting Entry ID: ", id);
   }
 
@@ -46,7 +47,7 @@ const EntryForm2 = (props) => {
     if (props.id) {
       axios.put(`/api/entries/${props.id}`, newEntry)
       .then((response) => {
-        navigate("/entriesfeed")
+        navigate("/entries")
         console.log(response);
       })
       .catch((error) => {
@@ -56,7 +57,7 @@ const EntryForm2 = (props) => {
       // Use post if its a new entry
       axios.post('/api/entries', newEntry)
       .then((response) => {
-        navigate("/entriesfeed")
+        navigate("/entries")
         console.log(response);
       })
       .catch((error) => {
@@ -94,7 +95,7 @@ const EntryForm2 = (props) => {
           className="input input-bordered w-full max-w-xs" 
         />
         </div>
-        <div className="w-2/3">
+        <div className="w-full px-10">
             <TinyMCE updateEntry={updateEntry} existingValues={props.entry}/>
         </div>
         <div className="w-2/3 flex gap-x-3 mt-3">
@@ -140,8 +141,13 @@ const EntryForm2 = (props) => {
         value={newEntry.notes}
         onChange={(event) => updateEntry("notes", event.target.value)}/>
         </div>
-        <div className='flex w-2/3 justify-end mt-3 mb-10'>
+        <div className='flex w-2/3 justify-center mt-5 mb-10 gap-x-3'>
           <button type="submit" className="btn btn-primary w-32">Save</button>
+          <DeleteEntry
+            key={props.id}
+            id={props.id}
+            handleDelete={handleDelete}
+          />
           {props.id ? 
             <label htmlFor={'my-modal-' + props.id}  className="btn btn-ghost btn-circle">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -151,11 +157,6 @@ const EntryForm2 = (props) => {
         </div>
       </form>
       </div>
-      <DeleteEntry
-      key={props.id}
-      id={props.id}
-      handleDelete={handleDelete}
-      />
       </>
   )
 }
