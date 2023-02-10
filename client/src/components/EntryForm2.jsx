@@ -19,6 +19,7 @@ const EntryForm2 = (props) => {
     title: props.title ? props.title : null,
     date: props.date ? props.date : defaultDateValue,
     entry: props.entry ? props.entry : null,
+    private: props.private === false ? props.private : true,
     hours: props.hours ? props.hours : null,
     language: props.language ? props.language : null,
     framework: props.framework ? props.framework : null,
@@ -27,7 +28,6 @@ const EntryForm2 = (props) => {
 
   const updateEntry = (key, value) => {
     setnewEntry((prev) =>{
-      console.log("State Updating: ", key, value);
       return {...prev, [key]:value}
     })
   }
@@ -38,7 +38,7 @@ const EntryForm2 = (props) => {
   }
   const handleDelete = async (id) => {
     await axios.delete('/api/entries/' + id);
-    navigate("/entriesfeed")
+    navigate("/entries")
     console.log("Deleting Entry ID: ", id);
   }
 
@@ -50,7 +50,7 @@ const EntryForm2 = (props) => {
     if (props.id) {
       axios.put(`/api/entries/${props.id}`, newEntry)
       .then((response) => {
-        navigate("/entriesfeed")
+        navigate("/entries")
         console.log(response);
       })
       .catch((error) => {
@@ -60,7 +60,7 @@ const EntryForm2 = (props) => {
       // Use post if its a new entry
       axios.post('/api/entries', newEntry)
       .then((response) => {
-        navigate("/entriesfeed")
+        navigate("/entries")
         console.log(response);
       })
       .catch((error) => {
@@ -97,7 +97,18 @@ const EntryForm2 = (props) => {
           onChange={(event) => updateEntry("date", event.target.value)}
           className="input input-bordered w-full max-w-xs" 
         />
+        <select 
+          className="select select-bordered w-auto max-w-xs" 
+          name="private" 
+          id="private"  
+          value={newEntry.private}  
+          onChange={(event) => updateEntry("private", event.target.value)}>
+            <option disabled selected>Entry Visibilty</option>
+            <option value={true}>Private</option>
+            <option value={false}>Public</option>
+        </select>
         </div>
+
         <div className="w-2/3">
             <TinyMCE updateEntry={updateEntry} existingValues={props.entry} updateCount={updateCharCount} newEntry={newEntry}/>
         </div>
@@ -144,8 +155,13 @@ const EntryForm2 = (props) => {
         value={newEntry.notes}
         onChange={(event) => updateEntry("notes", event.target.value)}/>
         </div>
-        <div className='flex w-2/3 justify-end mt-3 mb-10'>
+        <div className='flex w-2/3 justify-center mt-5 mb-10 gap-x-3'>
           <button type="submit" className="btn btn-primary w-32">Save</button>
+          <DeleteEntry
+            key={props.id}
+            id={props.id}
+            handleDelete={handleDelete}
+          />
           {props.id ? 
             <label htmlFor={'my-modal-' + props.id}  className="btn btn-ghost btn-circle">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -155,11 +171,6 @@ const EntryForm2 = (props) => {
         </div>
       </form>
       </div>
-      <DeleteEntry
-      key={props.id}
-      id={props.id}
-      handleDelete={handleDelete}
-      />
       </>
   )
 }

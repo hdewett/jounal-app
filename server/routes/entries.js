@@ -3,15 +3,16 @@ const router = express.Router();
 
 module.exports = db => {
 
-  // Get all entries
-  router.get("/entries", (req, response) => {
+  // Get all entries for User 1 (default user), Limit 5
+  router.get("/entries/limit", (req, response) => {
     db.query(
       `SELECT 
         id, 
         title, 
         to_char(date,'YYYY-MM-DD') AS date
       FROM entries
-      order by date desc;`
+      WHERE user_id = 1
+      LIMIT 5;`
     ).then(({ rows: entries }) => {
       console.log("retrieving entries");
       return response.json(entries);
@@ -22,9 +23,52 @@ module.exports = db => {
       });
   });
 
+  // Get all entries for User 1 (default user)
+  router.get("/entries", (req, response) => {
+    db.query(
+      `SELECT 
+        id, 
+        title, 
+        to_char(date,'YYYY-MM-DD') AS date
+      FROM entries
+      WHERE user_id = 1;`
+    ).then(({ rows: entries }) => {
+      console.log("retrieving entries");
+      return response.json(entries);
+    })
+      .catch(error => {
+        console.log(`There was an ${error}`);
+        response.status(500).send;
+      });
+  });
+
+  // GET all public entries
+  router.get("/entries/public", (req, response) => {
+    db.query(
+      `SELECT 
+        entries.id, 
+        entries.title,
+        entries.notes,
+        entries.private, 
+        to_char(entries.date,'YYYY-MM-DD') AS date,
+        users.name,
+        users.avatar_img
+      FROM entries
+      INNER JOIN users ON user_id = users.id
+      WHERE entries.private = false
+      order by date desc;`
+    ).then(({ rows: entries }) => {
+      return response.json(entries);
+    })
+      .catch(error => {
+        console.log(`There was an ${error}`);
+        response.status(500).send;
+      });
+  });
+
   //Get specific entry for ViewEntry page
   router.get("/viewentry/:id", (req, response) => {
-    console.log("LOOK HERE")
+    console.log("LOOK HERE");
     db.query(
       `SELECT
       entries.id, 
@@ -116,6 +160,7 @@ router.get("/stats/:id", (request, response) => {
         title, 
         to_char(date,'YYYY-MM-DD') AS date,
         entry,
+        private,
         hours, 
         language_id, 
         framework_id, 
@@ -134,9 +179,9 @@ router.get("/stats/:id", (request, response) => {
 
   // Update specific entry
   router.put("/entries/:id", (request, response) => {
-    const { title, date, entry, hours, language, framework, notes } = request.body;
-    db.query(`UPDATE entries SET title=$2, date=$3, entry=$4, hours=$5, language_id=$6, framework_id=$7, notes=$8  WHERE id = $1::integer`, [
-      request.params.id, title, date, entry, hours, language, framework, notes
+    const { title, date, entry, hours, language, framework, notes, private } = request.body;
+    db.query(`UPDATE entries SET title=$2, date=$3, entry=$4, hours=$5, language_id=$6, framework_id=$7, notes=$8, private=$9  WHERE id = $1::integer`, [
+      request.params.id, title, date, entry, hours, language, framework, notes, private
     ]).then(({ rows: entries }) => {
       console.log("updated entry");
       return response.json(entries);
@@ -147,9 +192,9 @@ router.get("/stats/:id", (request, response) => {
       });
   });
 
-  // Update existing entry
+  // Update Existing entry
   router.put('/entries/:id', (req, res) => {
-    const { title, entry, hours, language, framework, notes, date } = req.body;
+    const { title, entry, hours, language, framework, notes, date, private } = req.body;
     
     db.query(
       `UPDATE entries
@@ -161,7 +206,8 @@ router.get("/stats/:id", (request, response) => {
        framework_id = $5, 
        notes = $6, 
        date = $7
-       WHERE id = $8;` ,[title, entry, hours, language, framework, notes, date, req.params.id]
+       private = $8
+       WHERE id = $9;` ,[title, entry, hours, language, framework, notes, date, private, req.params.id]
     ).then(({ rows: entries }) => {
       console.log(entries);
       return res.status(200).json(entries);
@@ -173,13 +219,14 @@ router.get("/stats/:id", (request, response) => {
       });
   });
 
-  // Create new entry
+
+  // Create a new entry
   router.post('/entries', (req, res) => {
-    const { title, entry, hours, language, framework, notes, date } = req.body;
+    const { title, entry, hours, language, framework, notes, date, private } = req.body;
     
     console.log("Request Body: ", req.body);
     db.query(
-      `INSERT INTO entries (title, entry, hours, language_id, framework_id, notes, date) VALUES ($1,$2,$3,$4,$5,$6,$7) returning *;` ,[title, entry, hours, language, framework, notes, date]
+      `INSERT INTO entries (title, entry, hours, language_id, framework_id, notes, date, user_id, private) VALUES ($1,$2,$3,$4,$5,$6,$7,1,$8) returning *;` ,[title, entry, hours, language, framework, notes, date, private]
     ).then(({ rows: entries }) => {
       console.log(entries);
       return res.status(200).json(entries);

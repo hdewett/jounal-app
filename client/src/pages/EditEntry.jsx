@@ -9,7 +9,7 @@ function EditEntry() {
   const [entryData, setEntryData] = useState([]);
   // Pull id
   const { id } = useParams();
-  const entriesUrl = "/api/entries/"+ id ;
+  const entriesUrl = "/api/entries/" + id ;
   
   useEffect(() => {
     getEntriesDataWithAxios();
@@ -31,6 +31,7 @@ function EditEntry() {
       title={item.title}
       entry={item.entry}
       hours={item.hours}
+      private={item.private}
       language={item.language_id}
       framework={item.framework_id}
       notes={item.notes}
