@@ -76,8 +76,8 @@ import { Chart } from "react-google-charts";
 
 
   
-
-{/* <p>{loadData.distinctLanguage[0].language_name} {loadData.distinctLanguage[0].language_amount} times</p><progress className="progress w-56" value={loadData.distinctLanguage[0].language_amount} max="10"></progress>
+{/* 
+<p>{loadData.distinctLanguage[0].language_name} {loadData.distinctLanguage[0].language_amount} times</p><progress className="progress w-56" value={loadData.distinctLanguage[0].language_amount} max="10"></progress>
 
 <p>{loadData.distinctLanguage[1].language_name} {loadData.distinctLanguage[1].language_amount} times</p>
 <progress className="progress w-56" value={loadData.distinctLanguage[1].language_amount} max="10"></progress>
