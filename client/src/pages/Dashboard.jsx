@@ -1,10 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EntriesTable from "../components/EntriesTable";
 import { Outlet } from "react-router";
 import 'react-calendar/dist/Calendar.css';
 import CalendarSmall from "../components/CalendarSmall";
+import axios from "axios";
 
 function Dashboard() {
+
+  const entriesUrl = "/api/stats";
+
+  const [loadData, setLoadData] = useState({
+    hours:0,
+    languages: [],
+    distinctLanguage: [],
+
+  });
+  console.log(loadData)
+
+  useEffect(() => {
+    getEntriesDataWithAxios();
+  }, []);
+  
+  const getEntriesDataWithAxios = async () => {
+    const response = await axios.get(entriesUrl)
+    setLoadData(response.data)}
 
   return (
     <main class="flex h-full w-full flex-col px-14 my-10">
@@ -14,27 +33,28 @@ function Dashboard() {
       <section class="h-96 w-3/4 flex justify-center items-center"><CalendarSmall /></section>
       {/* <!-- Stats component--> */}
       <section class="h-96 w-1/4 flex justify-center items-center pl-24"><div className = "flex pt-10">
-  <div className="stats stats-vertical shadow">
+      <div className="stats stats-vertical shadow">
   
-  <div className="stat">
-    <div className="stat-title">Total Words</div>
-    <div className="stat-value">31K</div>
-    <div className="stat-desc">Words Typed</div>
-  </div>
+      <div className="stat">
+        <div className="stat-title">Total Words</div>
+        <div className="stat-value">31K</div>
+        <div className="stat-desc">Words Typed</div>
+      </div>
+      
+      <div className="stat">
+        <div className="stat-title">Languages</div>
+        <div className="stat-value">{loadData.languages.length}</div>
+        <div className="stat-desc">Languages Used</div>
+      </div>
+      
+      <div className="stat">
+        <div className="stat-title">Hours</div>
+        <div className="stat-value">{loadData.hours}</div>
+        <div className="stat-desc">Total Hours</div>
+      </div>
   
-  <div className="stat">
-    <div className="stat-title">Languages</div>
-    <div className="stat-value">10</div>
-    <div className="stat-desc">Languages Used</div>
-  </div>
-  
-  <div className="stat">
-    <div className="stat-title">Hours</div>
-    <div className="stat-value">46</div>
-    <div className="stat-desc">Total Hours</div>
-  </div>
-  </div>
-  </div></section>
+       </div>
+     </div></section>
     </div>
     {/* <!-- Entries --> */}
     <div>
