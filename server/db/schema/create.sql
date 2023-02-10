@@ -28,7 +28,7 @@ CREATE TABLE entries (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255) NOT NULL,
   date DATE,
-  entry TEXT,
+  entry VARCHAR,
   language_id INTEGER REFERENCES languages(id) ON DELETE CASCADE,
   framework_id INTEGER REFERENCES frameworks(id) ON DELETE CASCADE,
   hours INTEGER,

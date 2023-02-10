@@ -69,9 +69,9 @@ function CalendarSmall() {
 												.toDate()
 												.toDateString() ===
 												date.toDate().toDateString()
-												? "bg-primary text-white"
+												? "bg-accent text-white"
 												: "",
-											"h-10 w-10 rounded-full grid place-content-center hover:bg-primary-focus hover:text-white transition-all cursor-pointer select-none"
+											"h-10 w-10 rounded-full grid place-content-center hover:bg-secondary-focus hover:text-white transition-all cursor-pointer select-none"
 										)}
 										onClick={() => {
 											setSelectDate(date);

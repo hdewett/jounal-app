@@ -34,7 +34,7 @@ const EntryForm2 = (props) => {
 
   const handleDelete = async (id) => {
     await axios.delete('/api/entries/' + id);
-    navigate("/entriesfeed")
+    navigate("/entries")
     console.log("Deleting Entry ID: ", id);
   }
 
@@ -46,7 +46,7 @@ const EntryForm2 = (props) => {
     if (props.id) {
       axios.put(`/api/entries/${props.id}`, newEntry)
       .then((response) => {
-        navigate("/entriesfeed")
+        navigate("/entries")
         console.log(response);
       })
       .catch((error) => {
@@ -56,7 +56,7 @@ const EntryForm2 = (props) => {
       // Use post if its a new entry
       axios.post('/api/entries', newEntry)
       .then((response) => {
-        navigate("/entriesfeed")
+        navigate("/entries")
         console.log(response);
       })
       .catch((error) => {
