@@ -1,9 +1,9 @@
 import React from "react";
-import { SideNavData } from "./SideNavData";
-import { Link } from "react-router-dom";
 import * as AiIcons from "react-icons/ai"
+import { FiSun } from "react-icons/fi";
+import { FaRegMoon } from 'react-icons/fa';
 
-function TopNav() {
+function TopNav(props) {
 
 
   return (
@@ -13,7 +13,9 @@ function TopNav() {
     {/* Nav button */}
     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden"><AiIcons.AiOutlineMenu /></label>
     {/* <a className="btn btn-ghost normal-case text-xl">Codeful</a> */}
-  
+    <button onClick={props.toggleDarkMode}className="btn btn-ghost">
+    { props.darkModeState ? <FaRegMoon size={20}/> : <FiSun size={22}/>}
+    </button>
   </div>
   <div className="flex-none gap-2">
     <div className="form-control">

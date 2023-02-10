@@ -23,6 +23,7 @@ VALUES
 ('Laravel'),
 ('React-Native'),
 ('Django'),
+('Svelte'),
 ('Kotlin');
 
 INSERT INTO users (name, email, password, avatar_img)

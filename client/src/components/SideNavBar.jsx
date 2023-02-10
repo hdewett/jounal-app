@@ -8,7 +8,7 @@ import * as BsIcons from "react-icons/bs";
 import { MdPeopleAlt } from "react-icons/md";
 import classNames from "classnames";
 
-function SideNavBar() {
+function SideNavBar(props) {
 
   const location = useLocation();
   const pathName = location.pathname;
@@ -18,7 +18,7 @@ function SideNavBar() {
     <div className="drawer drawer-mobile">
     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
     <div className="drawer-content flex flex-col">
-    <TopNav />
+    <TopNav toggleDarkMode={props.toggleDarkMode}/>
     <Outlet />
     </div> 
     <div className="drawer-side">

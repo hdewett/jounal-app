@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function FeedEntry(props) {
 
@@ -47,7 +48,7 @@ export default function FeedEntry(props) {
         </div>
         </div>
 
-        <a href={`/viewentry/` + props.id}className="btn btn-primary">Read</a>
+        <Link to={`/viewentry/` + props.id}className="btn btn-primary">Read</Link>
         </div>
         </div>
       </div>
