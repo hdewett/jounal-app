@@ -3,16 +3,8 @@ import axios from "axios";
 import { Outlet } from "react-router";
 import { Chart } from "react-google-charts";
 import { wordCount } from "../helpers/wordCount";
+import entries from "../../../server/routes/entries";
 
-//as opposed to many maps
-// const func=(key)=>{
-//   {
-//   loadData.distnctLanguage.map
-//   ((language)=>{
-//   return language[key]
-//   }
-  
-//   } 
   const entriesUrl = "/api/stats";
 
   function Stats (props){
@@ -21,12 +13,12 @@ import { wordCount } from "../helpers/wordCount";
       languages: [],
       distinctLanguage: [],
       entries: [],
+      entriesPerDay: [],
+      hoursPerDay: []
 
     });
-    console.log("DISTINCT LANGUAGE HERE", loadData.distinctLanguage)
 
     const [totalWords, setTotalWords] = useState(0)
-  console.log(loadData);
   useEffect(() => {
     getEntriesDataWithAxios();
   }, []);
@@ -47,65 +39,100 @@ import { wordCount } from "../helpers/wordCount";
       }
       setTotalWords(total)
     };
+    
+     // 
+    let hoursArr = [["Date", "Hours"]]
+    loadData.hoursPerDay.map((hours) => hoursArr.push([hours.date, parseInt(hours.sum)]))
+    console.log(hoursArr)
 
-  
-    return(
+    let distinctLanguageArr = [["Languages", "Times Used"]]
+    loadData.distinctLanguage.map((language) =>distinctLanguageArr.push([language.language_name, parseInt(language.language_amount)]))
+
+    let entriesPerDayArr = [["Entries", "Days"]]
+    loadData.entriesPerDay.map((entry) => entriesPerDayArr.push([entriesPerDay.date, entriesPerDay.count]))
+    
+    
+    return (
       <>
-      <section class="h-96 w-1/4 flex justify-center items-center pl-24"><div className = "flex pt-10">
-      <div className="stats stats-vertical shadow">
-  
-      <div className="stat">
-        <div className="stat-title">Total Words</div>
-        <div className="stat-value">{totalWords}</div>
-        <div className="stat-desc">Words Typed</div>
+      <div class="flex">
+      <div class="flex h-96 w-1/2 bg-red-300 justify-center items-center">
+
+        {/* how many times we use a specific language */}
+        <Chart
+      chartType="PieChart"
+      data={ distinctLanguageArr}
+     
+      width={"100%"}
+      height={"400px"}
+    />
+    </div>
+
+
+      {/* <div class="flex h-96 w-1/2 bg-red-300 justify-center items-center">
+        <p>{loadData.distinctLanguage.map((language) => {
+          return (
+            <>
+            <p>{language.language_name}</p>
+            <progress className="progress w-56" value= {language.language_amount} max="10"></progress>
+            </>
+          )
+        }
+        )}
+        </p>
+      </div> */}
+
+        {/* Counter */}
+
+      <div class="flex h-96 w-1/2 bg-blue-300 justify-center items-center">
+      <p1>two</p1>
       </div>
-      
-      <div className="stat">
-        <div className="stat-title">Languages</div>
-        <div className="stat-value">{loadData.languages.length}</div>
-        <div className="stat-desc">Languages Used</div>
+
+
+       {/* hours spent studying per day */}
+
+        <div class="flex h-96 w-1/2 bg-yellow-300 justify-center items-center">
+        <Chart
+      chartType="BarChart"
+      data={ hoursArr}
+     
+      width={"100%"}
+      height={"400px"}
+    />
+        {/* <p>{loadData.hoursPerDay.map((hours) => {
+          return (
+            <>
+            <p>{hours.sum}</p>
+            <progress className="progress w-56" value= {hours.hoursPerDay} max="10"></progress>
+            </>
+            )
+          }
+          )}
+        </p> */}
+        </div> 
+
+      {/* </div>
+      <div class="flex">
+      <div class="flex h-96 w-1/2 bg-yellow-300 justify-center items-center">
+          <div className="stat-title">Hours</div>
+          <div className="stat-value">{loadData.hours}</div>
+          <div className="stat-desc">Total Hours</div>
+      </div> */}
+
+        {/* number of entries per day */}
+      <div class="flex h-96 w-1/2 bg-green-300 justify-center items-center">
+      <Chart
+      chartType="BarChart"
+      data={entriesPerDayArr}
+     
+      width={"100%"}
+      height={"400px"}
+    />
       </div>
-      
-      <div className="stat">
-        <div className="stat-title">Hours</div>
-        <div className="stat-value">{loadData.hours}</div>
-        <div className="stat-desc">Total Hours</div>
       </div>
-  
-       </div>
-     </div></section>
-
-    {console.log("TEST",loadData.distinctLanguage)}
-
-  <h1>{loadData.distinctLanguage.map((language) => {
-    return (
-      language.language_name
-    )
-  }
-  )}</h1>
-
-  <h1>{loadData.distinctLanguage.map((language) => {
-    return (
-      language.language_amount
-    )
-  }
-  )}</h1>
-
-
-  
-{/* 
-<p>{loadData.distinctLanguage[0].language_name} {loadData.distinctLanguage[0].language_amount} times</p><progress className="progress w-56" value={loadData.distinctLanguage[0].language_amount} max="10"></progress>
-
-<p>{loadData.distinctLanguage[1].language_name} {loadData.distinctLanguage[1].language_amount} times</p>
-<progress className="progress w-56" value={loadData.distinctLanguage[1].language_amount} max="10"></progress>
-
-<p>{loadData.distinctLanguage[2].language_name} {loadData.distinctLanguage[2].language_amount} times</p>
-<progress className="progress w-56" value={loadData.distinctLanguage[2].language_amount} max="10"></progress> */}
-
-   
-   
+    
   <Outlet />
    </>
+  
     )
 }
 
