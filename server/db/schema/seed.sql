@@ -1,30 +1,29 @@
-INSERT INTO languages(name)
+INSERT INTO languages(name, icon_img)
 VALUES
-('Javascript'),
-('Python'),
-('Java'),
-('PHP'),
-('Ruby'),
-('CSS'),
-('HTML'),
-('TypeScript'),
-('C'),
-('C++'),
-('C#');
+('Javascript', 'https://i.pinimg.com/736x/28/75/3d/28753ddf79d70042ba86564947e13bf5.jpg'),
+('Python', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png'),
+('Java', 'https://cdn-icons-png.flaticon.com/512/226/226777.png'),
+('PHP', 'https://w7.pngwing.com/pngs/751/3/png-transparent-logo-php-html-others-text-trademark-logo-thumbnail.png'),
+('Ruby', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Ruby_logo.svg/1024px-Ruby_logo.svg.png'),
+('CSS', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1452px-CSS3_logo_and_wordmark.svg.png'),
+('HTML', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/640px-HTML5_logo_and_wordmark.svg.png'),
+('TypeScript', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png'),
+('C', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png'),
+('C++', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png'),
+('C#', 'https://seeklogo.com/images/C/c-sharp-c-logo-02F17714BA-seeklogo.com.png');
 
-INSERT INTO frameworks(name)
+INSERT INTO frameworks(name, icon_img)
 VALUES
-('React'),
-('Angular'),
-('Vue'),
-('Rails'),
-('.NET'),
-('Express'),
-('Laravel'),
-('React-Native'),
-('Django'),
-('Svelte'),
-('Kotlin');
+('React', 'https://res.cloudinary.com/practicaldev/image/fetch/s--qo_Wp38Z--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/e0nl7ziy1la7bpwj7rsp.png'),
+('Angular', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png'),
+('Vue', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png'),
+('Rails', 'https://assets.stickpng.com/images/62c48bbdd884e8c372162223.png'),
+('Nextjs', ''),
+('Express', 'https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png'),
+('Laravel', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png'),
+('Django', 'https://verbose-equals-true.gitlab.io/django-postgres-vue-gitlab-ecs/django.jpg'),
+('Svelte', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png'),
+('Kotlin', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kotlin_Icon.svg/2048px-Kotlin_Icon.svg.png');
 
 INSERT INTO users (name, email, password, avatar_img)
 VALUES

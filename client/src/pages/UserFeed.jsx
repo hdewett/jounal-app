@@ -34,7 +34,7 @@ function UserFeed() {
   })
 
   return (
-    <section class="flex h-auto w-full">
+    <section class="flex h-auto w-full max-w-[1500px]">
 
       {/* Main content container */}
       <section class="flex flex-col h-full w-2/3 px-5 items-center">

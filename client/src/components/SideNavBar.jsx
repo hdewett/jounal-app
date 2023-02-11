@@ -18,7 +18,7 @@ function SideNavBar(props) {
     <div className="drawer drawer-mobile">
     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
     <div className="drawer-content flex flex-col">
-    <TopNav toggleDarkMode={props.toggleDarkMode}/>
+    <TopNav toggleDarkMode={props.toggleDarkMode} darkModeState={props.darkModeState}/>
     <Outlet />
     </div> 
     <div className="drawer-side">
