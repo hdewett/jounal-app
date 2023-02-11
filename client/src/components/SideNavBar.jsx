@@ -27,12 +27,12 @@ function SideNavBar(props) {
     <a href="/" className="btn btn-ghost normal-case text-2xl text-primary">Codeful</a>
       {/* <!-- Sidebar content here --> */}
       
-      <li className="text-lg"><Link to="/" className={classNames({"active":pathName == "/"})}><AiIcons.AiFillHome /> Dashboard</Link></li>
-      <li className="text-lg"><Link to="/entries" className={classNames({"active":pathName == "/entries"})}><BsIcons.BsJournalCode />Journal</Link></li>
-      <li className="text-lg"><Link to="/entry/new" className={classNames({"active":pathName == "/entry/new"})}><AiIcons.AiOutlinePlus />New Entry</Link></li>
-      <li className="text-lg"><Link to="/entriesfeed" className={classNames({"active":pathName == "/entriesfeed"})}><FaIcons.FaTasks />Entries Feed</Link></li>
-      <li className="text-lg"><Link to="/stats" className={classNames({"active":pathName == "/stats"})}><IoIcons.IoMdStats />Stats</Link></li>
-      <li className="text-lg"><Link to="/userfeed" className={classNames({"active":pathName == "/userfeed"})}><MdPeopleAlt />User Feed</Link></li>
+      <li className="text-lg"><Link to="/" className={classNames({"active":pathName === "/"})}><AiIcons.AiFillHome /> Dashboard</Link></li>
+      <li className="text-lg"><Link to="/entries" className={classNames({"active":pathName === "/entries"})}><BsIcons.BsJournalCode />Journal</Link></li>
+      <li className="text-lg"><Link to="/entry/new" className={classNames({"active":pathName === "/entry/new"})}><AiIcons.AiOutlinePlus />New Entry</Link></li>
+      <li className="text-lg"><Link to="/entriesfeed" className={classNames({"active":pathName === "/entriesfeed"})}><FaIcons.FaTasks />Entries Feed</Link></li>
+      <li className="text-lg"><Link to="/stats" className={classNames({"active":pathName === "/stats"})}><IoIcons.IoMdStats />Stats</Link></li>
+      <li className="text-lg"><Link to="/userfeed" className={classNames({"active":pathName === "/userfeed"})}><MdPeopleAlt />User Feed</Link></li>
 
       {/* {SideNavData.map((item, index) => {
             return (

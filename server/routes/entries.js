@@ -112,12 +112,14 @@ module.exports = (db) => {
     Promise.all([
       db.query(`SELECT 
       SUM(hours) 
-      FROM entries`),
+      FROM entries
+      WHERE user_id = 1;`),
       db.query(`SELECT
           DISTINCT language_id,
           languages.name as language_name
           FROM entries 
-          INNER JOIN languages on language_id = languages.id;`),
+          INNER JOIN languages on language_id = languages.id
+          WHERE user_id = 1;`),
       db.query(`SELECT
           language_id, count(*) as language_amount,
           languages.name as language_name
