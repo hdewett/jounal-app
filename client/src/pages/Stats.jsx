@@ -12,20 +12,16 @@ import { wordCount } from "../helpers/wordCount";
       languages: [],
       distinctLanguage: [],
       entries: [],
-      entriesPerDay: []
+      entriesPerDay: [],
+      hoursPerDay: []
 
     });
 
     const [totalWords, setTotalWords] = useState(0)
-  console.log(loadData);
   useEffect(() => {
     getEntriesDataWithAxios();
   }, []);
 
-
-    useEffect(() => {
-      getEntriesDataWithAxios();
-    }, []);
     
     const getEntriesDataWithAxios = async () => {
       const response = await axios.get(entriesUrl);
@@ -38,13 +34,36 @@ import { wordCount } from "../helpers/wordCount";
       }
       setTotalWords(total)
     };
+    
+     // 
+    let hoursArr = [["Date", "Hours"]]
+    loadData.hoursPerDay.map((hours) => hoursArr.push([hours.date, parseInt(hours.sum)]))
+    console.log(hoursArr)
 
+    let distinctLanguageArr = [["Languages", "Times Used"]]
+    loadData.distinctLanguage.map((language) =>distinctLanguageArr.push([language.language_name, parseInt(language.language_amount)]))
+
+    // let entriesPerDayArr = [["Entries", "Days"]]
+    // loadData.entriesPerDay.map((entry) => entriesPerDayArr.push([entriesPerDay.date, entriesPerDay.count]))
+    
+    
     return (
       <>
       <div class="flex">
+      <div class="flex h-96 w-1/2 bg-red-300 justify-center items-center">
 
         {/* how many times we use a specific language */}
-      <div class="flex h-96 w-1/2 bg-red-300 justify-center items-center">
+        <Chart
+      chartType="PieChart"
+      data={ distinctLanguageArr}
+     
+      width={"100%"}
+      height={"400px"}
+    />
+    </div>
+
+
+      {/* <div class="flex h-96 w-1/2 bg-red-300 justify-center items-center">
         <p>{loadData.distinctLanguage.map((language) => {
           return (
             <>
@@ -55,7 +74,7 @@ import { wordCount } from "../helpers/wordCount";
         }
         )}
         </p>
-      </div>
+      </div> */}
 
         {/* Counter */}
 
@@ -64,22 +83,48 @@ import { wordCount } from "../helpers/wordCount";
       </div>
 
 
-        {/* hours spent studying per day */}
+       {/* hours spent studying per day */}
 
-      </div>
+        <div class="flex h-96 w-1/2 bg-yellow-300 justify-center items-center">
+        <Chart
+      chartType="BarChart"
+      data={ hoursArr}
+     
+      width={"100%"}
+      height={"400px"}
+    />
+        {/* <p>{loadData.hoursPerDay.map((hours) => {
+          return (
+            <>
+            <p>{hours.sum}</p>
+            <progress className="progress w-56" value= {hours.hoursPerDay} max="10"></progress>
+            </>
+            )
+          }
+          )}
+        </p> */}
+        </div> 
+
+      {/* </div>
       <div class="flex">
       <div class="flex h-96 w-1/2 bg-yellow-300 justify-center items-center">
           <div className="stat-title">Hours</div>
           <div className="stat-value">{loadData.hours}</div>
           <div className="stat-desc">Total Hours</div>
-      </div>
+      </div> */}
 
         {/* number of entries per day */}
       <div class="flex h-96 w-1/2 bg-green-300 justify-center items-center">
-      <p1>four</p1>
+      {/* <Chart
+      chartType="BarChart"
+      data={entriesPerDayArr}
+     
+      width={"100%"}
+      height={"400px"}
+    /> */}
       </div>
       </div>
-
+    
   <Outlet />
    </>
   

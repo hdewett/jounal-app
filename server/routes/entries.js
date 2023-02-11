@@ -121,6 +121,11 @@ router.get("/stats", (req, response) => {
         date, 
         count(*) 
         FROM entries 
+        GROUP BY date;` ),
+        db.query(`SELECT
+        date, 
+        SUM(hours) 
+        FROM entries 
         GROUP BY date;` )
   ])
     .then((results) => {
@@ -130,7 +135,8 @@ router.get("/stats", (req, response) => {
         languages: results[1].rows,
         distinctLanguage: results[2].rows,
         entries: results[3].rows,
-        entriesPerDay: results[4].rows
+        entriesPerDay: results[4].rows,
+        HoursPerDay: results[5].rows
       });
     })
     .catch(error => {
