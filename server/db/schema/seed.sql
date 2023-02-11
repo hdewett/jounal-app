@@ -1,29 +1,29 @@
-INSERT INTO languages(name, icon_img)
+INSERT INTO languages(name)
 VALUES
-('Javascript', 'https://i.pinimg.com/736x/28/75/3d/28753ddf79d70042ba86564947e13bf5.jpg'),
-('Python', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png'),
-('Java', 'https://cdn-icons-png.flaticon.com/512/226/226777.png'),
-('PHP', 'https://w7.pngwing.com/pngs/751/3/png-transparent-logo-php-html-others-text-trademark-logo-thumbnail.png'),
-('Ruby', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Ruby_logo.svg/1024px-Ruby_logo.svg.png'),
-('CSS', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1452px-CSS3_logo_and_wordmark.svg.png'),
-('HTML', 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/640px-HTML5_logo_and_wordmark.svg.png'),
-('TypeScript', 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png'),
-('C', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/C_Programming_Language.svg/1200px-C_Programming_Language.svg.png'),
-('C++', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png'),
-('C#', 'https://seeklogo.com/images/C/c-sharp-c-logo-02F17714BA-seeklogo.com.png');
+('Javascript'),
+('Python'),
+('Java'),
+('PHP'),
+('Ruby'),
+('CSS'),
+('HTML'),
+('TypeScript'),
+('C'),
+('C++'),
+('C#');
 
-INSERT INTO frameworks(name, icon_img)
+INSERT INTO frameworks(name)
 VALUES
-('React', 'https://res.cloudinary.com/practicaldev/image/fetch/s--qo_Wp38Z--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/e0nl7ziy1la7bpwj7rsp.png'),
-('Angular', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png'),
-('Vue', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png'),
-('Rails', 'https://assets.stickpng.com/images/62c48bbdd884e8c372162223.png'),
-('Nextjs', ''),
-('Express', 'https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png'),
-('Laravel', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png'),
-('Django', 'https://verbose-equals-true.gitlab.io/django-postgres-vue-gitlab-ecs/django.jpg'),
-('Svelte', 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png'),
-('Kotlin', 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Kotlin_Icon.svg/2048px-Kotlin_Icon.svg.png');
+('React'),
+('Angular'),
+('Vue'),
+('Rails'),
+('Nextjs'),
+('Express'),
+('Laravel'),
+('Django'),
+('Svelte'),
+('Kotlin');
 
 INSERT INTO users (name, email, password, avatar_img)
 VALUES
@@ -160,7 +160,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 6, 4, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('How do I use power functions in Java?', '2022-02-04', '<p>How do I use power functions in Java?</p>
       <p>Here is an example of using <em><strong>powers in Java:</strong></em></p>
@@ -177,7 +177,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 1, 3, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('What is C# Operator Precedence?', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -189,7 +189,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 1, 2, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('How to set up a workspace in Java Eclipse', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -201,7 +201,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 1, 1, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('How to set up a workspace in Java Eclipse', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -213,7 +213,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 8, 1, 3, 'Think of html as the skeleton of your web pages!', 1),
     
 
     ('What is `This` Keyword in JavaScript? Here`s How to Implement It', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
@@ -226,7 +226,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 5),
+    print(p1.age)</code></pre>', false, 8, 1, 3, 'Think of html as the skeleton of your web pages!', 5),
     
     ('How to Set Up Unit Testing for Java', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -238,7 +238,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 10),
+    print(p1.age)</code></pre>', false, 5, 5, 3, 'Think of html as the skeleton of your web pages!', 10),
     
     ('What is Cypress testing?', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -250,7 +250,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 9),
+    print(p1.age)</code></pre>', false, 4, 7, 3, 'Think of html as the skeleton of your web pages!', 9),
     
     ('Alternative Methods to Using Nested For Loops in Javascript', '2022-02-04', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -262,7 +262,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 9),
+    print(p1.age)</code></pre>', false, 1, 3, 3, 'Think of html as the skeleton of your web pages!', 9),
     
     ('What is PostgreSQL', '2022-02-05', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -274,7 +274,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 8),
+    print(p1.age)</code></pre>', false, 2, 8, 3, 'Think of html as the skeleton of your web pages!', 8),
     
     ('How to Avoid Infinite Loops in Javascript: Understanding Conditionals', '2022-02-06', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -286,7 +286,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 7),
+    print(p1.age)</code></pre>', false, 2, 8, 3, 'Think of html as the skeleton of your web pages!', 7),
     
     ('Using HTTP Methods for RESTful Services', '2022-02-07', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -298,7 +298,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 8);
+    print(p1.age)</code></pre>', false, 8, 1, 3, 'Think of html as the skeleton of your web pages!', 8);
 
 
 

@@ -49,12 +49,18 @@ module.exports = db => {
         entries.id, 
         entries.title,
         entries.notes,
-        entries.private, 
+        entries.private,
+        entries.language_id,
+        entries.framework_id, 
         to_char(entries.date,'YYYY-MM-DD') AS date,
         users.name,
-        users.avatar_img
+        users.avatar_img,
+        frameworks.name AS framework_name,
+        languages.name AS language_name
       FROM entries
       INNER JOIN users ON user_id = users.id
+      INNER JOIN languages ON language_id = languages.id
+      INNER JOIN frameworks ON framework_id = frameworks.id
       WHERE entries.private = false
       order by date desc;`
     ).then(({ rows: entries }) => {
