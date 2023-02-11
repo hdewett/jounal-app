@@ -24,9 +24,9 @@ import { wordCount } from "../helpers/wordCount";
   }, []);
 
 
-    useEffect(() => {
-      getEntriesDataWithAxios();
-    }, []);
+    // useEffect(() => {
+    //   getEntriesDataWithAxios();
+    // }, []);
     
     const getEntriesDataWithAxios = async () => {
       const response = await axios.get(entriesUrl);
