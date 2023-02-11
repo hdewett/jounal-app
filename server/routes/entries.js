@@ -136,7 +136,7 @@ router.get("/stats", (req, response) => {
         distinctLanguage: results[2].rows,
         entries: results[3].rows,
         entriesPerDay: results[4].rows,
-        HoursPerDay: results[5].rows
+        hoursPerDay: results[5].rows
       });
     })
     .catch(error => {

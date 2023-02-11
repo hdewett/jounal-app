@@ -18,10 +18,14 @@ import { wordCount } from "../helpers/wordCount";
     });
 
     const [totalWords, setTotalWords] = useState(0)
-  useEffect(() => {
+    useEffect(() => {
     getEntriesDataWithAxios();
-  }, []);
+    }, []);
 
+
+    useEffect(() => {
+      getEntriesDataWithAxios();
+    }, []);
     
     const getEntriesDataWithAxios = async () => {
       const response = await axios.get(entriesUrl);
@@ -43,8 +47,8 @@ import { wordCount } from "../helpers/wordCount";
     let distinctLanguageArr = [["Languages", "Times Used"]]
     loadData.distinctLanguage.map((language) =>distinctLanguageArr.push([language.language_name, parseInt(language.language_amount)]))
 
-    // let entriesPerDayArr = [["Entries", "Days"]]
-    // loadData.entriesPerDay.map((entry) => entriesPerDayArr.push([entriesPerDay.date, entriesPerDay.count]))
+    let entriesPerDayArr = [["Entries", "Days"]]
+    loadData.entriesPerDay.map((entry) => entriesPerDayArr.push([entry.date, parseInt(entry.count)]))
     
     
     return (
@@ -78,8 +82,14 @@ import { wordCount } from "../helpers/wordCount";
 
         {/* Counter */}
 
-      <div class="flex h-96 w-1/2 bg-blue-300 justify-center items-center">
-      <p1>two</p1>
+      <div class="flex h-96 w-1/2 justify-center items-center">
+      <div class="flex h-96 w-1/2 justify-center items-center">
+        <div classname="flex">
+          <div className="stat-title">Total Words</div>
+          <div className="stat-value">{totalWords}</div>
+          <div className="stat-desc">Words Typed</div>
+        </div>
+      </div>
       </div>
 
 
@@ -115,13 +125,13 @@ import { wordCount } from "../helpers/wordCount";
 
         {/* number of entries per day */}
       <div class="flex h-96 w-1/2 bg-green-300 justify-center items-center">
-      {/* <Chart
-      chartType="BarChart"
+      <Chart
+      chartType="LineChart"
       data={entriesPerDayArr}
      
       width={"100%"}
       height={"400px"}
-    /> */}
+    />
       </div>
       </div>
     
