@@ -3,7 +3,11 @@ import { useState } from 'react';
 import axios from  'axios';
 import { useNavigate } from "react-router-dom";
 import TinyMCE from '../components/TinyMCE.jsx';
-import DeleteEntry from './DeleteEntry.jsx';
+import DeleteEntry from '../components/DeleteEntry';
+import { IoLogoJavascript, IoLogoPython } from "react-icons/io";
+import { FaJava, FaVuejs, FaLaravel } from "react-icons/fa";
+import { DiPhp, DiRubyRough, DiCss3, DiHtml5, DiReact, DiAngularSimple } from "react-icons/di";
+import { SiTypescript, SiRubyonrails, SiExpress, SiDjango, SiSvelte, SiKotlin, SiNextdotjs } from "react-icons/si";
 
 
 const EntryForm2 = (props) => {
@@ -34,7 +38,6 @@ const EntryForm2 = (props) => {
 
   const updateCharCount = (values) => {
   updateEntry("charcount" , values ? values.replace( /(<([^>]+)>)/ig, '').length : 0)
-  console.log(newEntry.charcount)
   }
   const handleDelete = async (id) => {
     await axios.delete('/api/entries/' + id);
@@ -42,11 +45,14 @@ const EntryForm2 = (props) => {
     console.log("Deleting Entry ID: ", id);
   }
 
+  const activeButtonClass = 'p-3 rounded-full hover:bg-gray-200 transition duration-150 ease-in-out bg-primary'
+  const inactiveButtonClass = 'p-3 rounded-full hover:bg-gray-200 transition duration-150 ease-in-out'
+
 
   // Updates existing entry record
   // or creates new entry record
-
   const save = () => {
+    console.log("State: ", newEntry);
     if (props.id) {
       axios.put(`/api/entries/${props.id}`, newEntry)
       .then((response) => {
@@ -71,34 +77,36 @@ const EntryForm2 = (props) => {
 
 
   return (
-    <>
-      <div className="flex flex-col justify-center items-center mt-5">
-        <div className="mockup-code bg-primary text-primary-content mb-10">
-          <pre data-prefix="1"><code>Create A New Journal Entry!</code></pre>
-        </div>
-        <form 
-          className="flex flex-col justify-center items-center w-full" 
-          onSubmit={((event) =>{
-            event.preventDefault();
-            save();})}>
-        <div className="flex w-full justify-center gap-x-3 mb-10">
+
+    <section class='w-full h-full flex'>
+
+      {/* Text Editor Section */}
+      <section className="flex flex-col intems-ceter px-5 py-10 h-screen w-2/3">
+        <TinyMCE updateEntry={updateEntry} existingValues={props.entry} updateCount={updateCharCount} newEntry={newEntry}/>
+      </section>
+
+      {/* Form Option Settings */}
+      <section className="flex flex-col intems-ceter px-5 py-10 h-screen w-1/3">
+        <label className="mb-2 tracking-wide">Journal Entry Title</label>
         <input 
           type="text" 
           placeholder="Entry Title"
           value={newEntry.title} 
           onChange={(event) => updateEntry("title", event.target.value)}
-          className="input input-bordered w-full max-w-xs"
+          className="input input-bordered w-full mb-2"
           required
         />
+        <label className="mb-2 tracking-wide">Date</label>
         <input 
           type="date" 
           defaultValue={defaultDateValue}
           value={newEntry.date}  
           onChange={(event) => updateEntry("date", event.target.value)}
-          className="input input-bordered w-full max-w-xs" 
+          className="input input-bordered w-full mb-2" 
         />
+        <label className="mb-2 tracking-wide">Journal Visibility</label>
         <select 
-          className="select select-bordered w-auto max-w-xs" 
+          className="select select-bordered w-auto mb-2" 
           name="private" 
           id="private"  
           value={newEntry.private}  
@@ -107,52 +115,105 @@ const EntryForm2 = (props) => {
             <option value={true}>Private</option>
             <option value={false}>Public</option>
         </select>
+        <label className="mt-3 mb-2 tracking-wide">Are you Journaling about a specific language?</label>
+        <div className="flex w-full justify-between">
+          <button 
+            className={newEntry.language === 1 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 1)}>
+            <IoLogoJavascript size={30}/>
+          </button>
+          <button 
+            className={newEntry.language === 2 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 2)}>
+            <IoLogoPython size={30}/>
+          </button>
+          <button 
+            className={newEntry.language === 3 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 3)}>
+            <FaJava size={30}/>
+          </button>
+          <button 
+            className={newEntry.language === 4 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 4)}>
+            <DiPhp size={30}/>
+          </button>
+          <button 
+            className={newEntry.language === 5 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 5)}>
+            <DiRubyRough size={30}/>
+          </button>
+          <button 
+            className={newEntry.language === 6 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 6)}>
+            <DiCss3 size={30}/>
+          </button>
+          <button 
+            className={newEntry.language === 7 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 7)}>
+            <DiHtml5 size={30}/>
+          </button>
+          <button 
+            className={newEntry.language === 8 ? activeButtonClass : inactiveButtonClass}
+            onClick={() => updateEntry("language", 8)}>
+            <SiTypescript size={30}/>
+          </button>
         </div>
-
-        <div className="w-2/3">
-            <TinyMCE updateEntry={updateEntry} existingValues={props.entry} updateCount={updateCharCount} newEntry={newEntry}/>
+        <label className="mt-3 mb-2 tracking-wide">Are you Journaling about a specific framework?</label>
+        <div className="flex w-full justify-between">
+          <button 
+              className={newEntry.framework === 1 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 1)}>
+              <DiReact size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 2 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 2)}>
+              <DiAngularSimple size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 3 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 3)}>
+              <FaVuejs size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 4 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 4)}>
+              <SiRubyonrails size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 5 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 5)}>
+              <SiNextdotjs size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 6 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 6)}>
+              <SiExpress size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 7 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 7)}>
+              <FaLaravel size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 8 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 8)}>
+              <SiDjango size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 9 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 9)}>
+              <SiSvelte size={30}/>
+          </button>
+          <button 
+              className={newEntry.framework === 10 ? activeButtonClass : inactiveButtonClass}
+              onClick={() => updateEntry("framework", 10)}>
+              <SiKotlin size={30}/>
+          </button>
         </div>
-        <div className="w-2/3 flex gap-x-3 mt-3">
+        <label className="mb-2 mt-3 tracking-wide">Hours spent studying</label>
         <select 
-          className="select select-bordered w-auto max-w-xs" 
-          name="hours" 
-          id="hours"  
-          value={newEntry.language}  
-          onChange={(event) => updateEntry("language", event.target.value)}>
-            <option disabled selected>Language</option>
-            <option value={1}>Javascript</option>
-            <option value={2}>Python</option>
-            <option value={3}>Java</option>
-            <option value={4}>PHP</option>
-            <option value={5}>Ruby</option>
-            <option value={6}>CSS</option>
-            <option value={7}>HTML</option>
-            <option value={8}>Typescript</option>
-            <option value={9}>C</option>
-            <option value={10}>C++</option>
-            <option value={11}>C#</option>
-        </select>
-        <select 
-          className="select select-bordered w-auto max-w-xs"
-          name="cars" 
-          id="cars"  
-          value={newEntry.framework}
-          onChange={(event) => updateEntry("framework", event.target.value)}>
-            <option disabled selected>Framework</option>
-            <option value={1}>React</option>
-            <option value={2}>Angular</option>
-            <option value={3}>Vue</option>
-            <option value={4}>Rails</option>
-            <option value={5}>.NET</option>
-            <option value={6}>Express</option>
-            <option value={7}>Laravel</option>
-            <option value={8}>React-Native</option>
-            <option value={9}>Django</option>
-            <option value={10}>Svelte</option>
-            <option value={11}>Kotlin</option>
-        </select>
-        <select 
-          className="select select-bordered w-auto max-w-xs"
+          className="select select-bordered w-auto"
           name="hours" 
           id="hours"  
           value={newEntry.hours}  
@@ -164,30 +225,31 @@ const EntryForm2 = (props) => {
             <option value={4}>4</option>
             <option value={5}>5</option>
         </select>
-        <input 
-        type="text"
-        placeholder="Additional Notes" 
-        className="input input-bordered w-auto max-w-xs" 
-        value={newEntry.notes}
-        onChange={(event) => updateEntry("notes", event.target.value)}/>
-        </div>
-        <div className='flex w-2/3 justify-center mt-5 mb-10 gap-x-3'>
-          <button type="submit" className="btn btn-primary w-32">Save</button>
-          <DeleteEntry
-            key={props.id}
-            id={props.id}
-            handleDelete={handleDelete}
-          />
-          {props.id ? 
-            <label htmlFor={'my-modal-' + props.id}  className="btn btn-ghost btn-circle">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-              </svg>
-            </label> : null}
-        </div>
-      </form>
-      </div>
-      </>
+        <label className="mb-2 mt-3 tracking-wide">Additional notes</label>
+        <textarea 
+          type="text"
+          placeholder="Additional Notes" 
+          className="textarea textarea-bordered" 
+          rows={6}
+          value={newEntry.notes}
+          onChange={(event) => updateEntry("notes", event.target.value)}
+        />
+        <button onClick={save} className='btn btn-primary w-full mt-3'>Save journal Entry</button>
+        <DeleteEntry
+          key={props.id}
+          id={props.id}
+          handleDelete={handleDelete}
+        />
+        {props.id ? 
+          <label htmlFor={'my-modal-' + props.id}  className="btn btn-ghost w-full mt-2 flex gap-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+            <p>Delete Entry</p>
+          </label> : null}
+      </section>
+
+    </section>
   )
 }
 

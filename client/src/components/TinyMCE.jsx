@@ -21,11 +21,10 @@ export default function App(props) {
           props.updateEntry("entry", newValue);
           setCount(cCount)
           props.updateCount(newValue)
-          console.log(props.newEntry)
         
         }}
         init={{
-          height: 500,
+          height: 900,
           menubar: false,
           selector: 'textarea',
           plugins: ['codesample',

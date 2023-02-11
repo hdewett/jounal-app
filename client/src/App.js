@@ -29,7 +29,7 @@ function App() {
 
   const AppLayout = () => (
     <section data-theme={darkModeState ? "emerald" : "dark"}>
-      <SideNavBar toggleDarkMode={toggleDarkMode}/>
+      <SideNavBar toggleDarkMode={toggleDarkMode} darkModeState={darkModeState}/>
     </section>
   );
   

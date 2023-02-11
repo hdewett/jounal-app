@@ -29,12 +29,14 @@ function UserFeed() {
       date={entry.date}
       name={entry.name}
       avatar_img={entry.avatar_img}
+      language_name={entry.language_name}
+      framework_name={entry.framework_name}
     />
 
   })
 
   return (
-    <section class="flex h-auto w-full">
+    <section class="flex h-auto w-full max-w-[1500px]">
 
       {/* Main content container */}
       <section class="flex flex-col h-full w-2/3 px-5 items-center">
