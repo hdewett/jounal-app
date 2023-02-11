@@ -100,7 +100,7 @@ module.exports = (db) => {
       });
   });
 
-  // Get sum of  entries, Get total languages, Get amount of distinct languages, Get total wordcount:  to count individual entries add a WHERE userid = userid 
+   // Get sum of  entries, Get total languages, Get amount of distinct languages, Get total wordcount:  to count individual entries add a WHERE userid = userid 
 router.get("/stats", (req, response) => {
   Promise.all([
     db.query(`SELECT 
@@ -122,7 +122,16 @@ router.get("/stats", (req, response) => {
         title, 
         entry,
         notes
-        FROM entries;` )
+        FROM entries;` ),
+    db.query(`SELECT
+        date, 
+        count(*) 
+        FROM entries 
+        GROUP BY date;` ),
+        db.query(`SELECT date,
+         sum(hours) 
+         FROM entries 
+        GROUP BY date;` )
   ])
     .then((results) => {
       console.log(results[0].rows[0].sum, results[1].rows, results[2].rows)
@@ -130,7 +139,9 @@ router.get("/stats", (req, response) => {
         hours: results[0].rows[0].sum,
         languages: results[1].rows,
         distinctLanguage: results[2].rows,
-        entries: results[3].rows
+        entries: results[3].rows,
+        entriesPerDay: results[4].rows,
+        hoursPerDay: results[5].rows
       });
     })
     .catch(error => {
@@ -138,7 +149,6 @@ router.get("/stats", (req, response) => {
       response.status(500).send;
     });
 });
-
 
 // Get specific entry for stats
 router.get("/stats/:id", (request, response) => {
