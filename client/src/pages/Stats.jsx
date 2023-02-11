@@ -3,7 +3,7 @@ import axios from "axios";
 import { Outlet } from "react-router";
 import { Chart } from "react-google-charts";
 import { wordCount } from "../helpers/wordCount";
-import entries from "../../../server/routes/entries";
+
 
   const entriesUrl = "/api/stats";
 
@@ -48,8 +48,8 @@ import entries from "../../../server/routes/entries";
     let distinctLanguageArr = [["Languages", "Times Used"]]
     loadData.distinctLanguage.map((language) =>distinctLanguageArr.push([language.language_name, parseInt(language.language_amount)]))
 
-    let entriesPerDayArr = [["Entries", "Days"]]
-    loadData.entriesPerDay.map((entry) => entriesPerDayArr.push([entriesPerDay.date, entriesPerDay.count]))
+    // let entriesPerDayArr = [["Entries", "Days"]]
+    // loadData.entriesPerDay.map((entry) => entriesPerDayArr.push([entriesPerDay.date, entriesPerDay.count]))
     
     
     return (
@@ -119,7 +119,7 @@ import entries from "../../../server/routes/entries";
       </div> */}
 
         {/* number of entries per day */}
-      <div class="flex h-96 w-1/2 bg-green-300 justify-center items-center">
+      {/* <div class="flex h-96 w-1/2 bg-green-300 justify-center items-center">
       <Chart
       chartType="BarChart"
       data={entriesPerDayArr}
@@ -127,7 +127,7 @@ import entries from "../../../server/routes/entries";
       width={"100%"}
       height={"400px"}
     />
-      </div>
+      </div> */}
       </div>
     
   <Outlet />
