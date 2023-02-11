@@ -29,6 +29,8 @@ function UserFeed() {
       date={entry.date}
       name={entry.name}
       avatar_img={entry.avatar_img}
+      language_name={entry.language_name}
+      framework_name={entry.framework_name}
     />
 
   })

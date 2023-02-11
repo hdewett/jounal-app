@@ -6,8 +6,16 @@ export default function FeedEntry(props) {
   return(
     <div className="card w-full bg-base-100 shadow-xl mt-5">
       <div className="card-body">
-        <h2 className="card-title">{props.title}</h2>
-        <p>{props.notes}</p>
+        <div className='flex w-full justify-between'>
+          <div className='flex flex-col'>
+            <h2 className="card-title">{props.title}</h2>
+            <p>{props.notes}</p>
+          </div>
+          <div className='flex gap-x-3'>
+            <span className="badge">{props.language_name}</span>
+            <span className="badge">{props.framework_name}</span>
+          </div>
+        </div>
         <div className="flex items-center card-actions justify-between mt-5">
         
         <div className="flex gap-x-2">
