@@ -45,7 +45,7 @@ function UserFeed() {
         <div>
           <div>👋</div>
           <div>
-            <h3 className="font-bold">Welcome to your user feed Bob!</h3>
+            <h3 className="font-bold">Welcome to your user feed Nawal!</h3>
             <div className="text-xs">You have 1 unread message</div>
           </div>
         </div>

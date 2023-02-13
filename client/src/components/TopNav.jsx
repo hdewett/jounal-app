@@ -24,7 +24,7 @@ function TopNav(props) {
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img src="https://e7.pngegg.com/pngimages/928/413/png-clipart-emoji-regional-indicator-symbol-computer-icons-fediverse-random-buttons-company-text.png" />
+          <img src="https://i.pinimg.com/564x/b7/36/89/b736890303b732584184902570e7feab.jpg" />
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">

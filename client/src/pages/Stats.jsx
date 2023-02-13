@@ -64,7 +64,6 @@ import { wordCount } from "../helpers/wordCount";
 
     let entriesPerDayOptions = {
       title: "Number of Entries Per Day",
-      fontName:"Times New Roman",
       colors: ['#377cfb']
     }
     
@@ -113,9 +112,12 @@ import { wordCount } from "../helpers/wordCount";
         <div class="flex h-96 w-1/2 items-center justify-center mr-36">
            {/* Total Words Counter */}
           <div classname="flex">
-          <span className="font-semibold text-sm mt-6">Total Words Typed This Month</span>
-            <div className="stat-value text-7xl">{totalWords}</div>
-            <div className="stat-desc text-lg px-2">Words Typed</div>
+            <div className=" flex w-full justify-start">
+              <span className="font-semibold text-sm text-black pl-4">Total Words Typed This Month</span>
+              </div>
+            <div className="stat-value text-9xl">{totalWords}</div>
+            <div className="stat-desc text-lg text-black font-bold pl-[62px]">Words Typed</div>
+    
           </div>
         </div>
       </div>

@@ -6,13 +6,13 @@ module.exports = (db) => {
 
   // Get 5 most recent for User 1 (default user)
   router.get("/entries/limit", (req, response) => {
-    db.query(
-      `SELECT 
-        id, 
-        title, 
-        to_char(date,'YYYY-MM-DD') AS date
+    db.query(`SELECT 
+      id, 
+      title, 
+      to_char(date,'YYYY-MM-DD') AS date
       FROM entries
       WHERE user_id = 1
+      ORDER BY date
       LIMIT 5;`
     )
       .then(({ rows: entries }) => {
@@ -33,7 +33,8 @@ module.exports = (db) => {
         title, 
         to_char(date,'YYYY-MM-DD') AS date
       FROM entries
-      WHERE user_id = 1;`
+      WHERE user_id = 1
+      ORDER BY date;`
     )
       .then(({ rows: entries }) => {
         console.log("retrieving entries");
