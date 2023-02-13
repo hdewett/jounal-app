@@ -37,7 +37,7 @@ export default function HomePage() {
       </div>
       <div className="w-1/2">
         <h3 className="text-3xl text-emerald-400 tracking-wide font-bold">Daily Journaling</h3>
-        <p className=" text-gray-400 text-lg mt-5">Codeful allows you to capture your coding progress through daily journaling. These daily journals allow allow to reinforce learned concepts, reflect on tough problems and retain greater amounts of information.</p>
+        <p className=" text-gray-400 text-lg mt-5">Codeful allows you to capture your coding progress through daily journaling. These daily journals allow allow to <span className="text-emerald-400">reinforce learned concepts</span>, reflect on tough problems and retain greater amounts of information.</p>
       </div>
     </div>
   </section>
@@ -46,7 +46,7 @@ export default function HomePage() {
     <div className='flex w-full h-auto p-5 items-center justify-between gap-x-10'>
     <div className="w-1/2">
         <h3 className="text-3xl text-emerald-400 tracking-wide font-bold">Track Your Progress</h3>
-        <p className=" text-gray-400 text-lg mt-5">Our personalized statistics page makes it seamless for you to track your coding progress from beginner programmer to expert! You'll be able to see how many hours you've spent studying, which frameworks and languages you spend the most time on and much more!</p>
+        <p className=" text-gray-400 text-lg mt-5">Our personalized <span className="text-emerald-400">statistics page</span> makes it seamless for you to track your coding progress from beginner programmer to expert! You'll be able to see how many hours you've spent studying, which frameworks and languages you spend the most time on and much more!</p>
       </div>
       <div className="w-1/2 h-auto">
         <img src="./images/Charts-bro.svg" width="500px" alt="" />
@@ -61,7 +61,7 @@ export default function HomePage() {
       </div>
       <div className="w-1/2">
         <h3 className="text-3xl text-emerald-400 tracking-wide font-bold">Share with Friends</h3>
-        <p className=" text-gray-400 text-lg mt-5">Publish your journal entires for the world to see! If you are journaling about an interesting topic, feel free to share it on our public feed for others to read!</p>
+        <p className=" text-gray-400 text-lg mt-5">Publish your journal entires for the world to see! If you are journaling about an interesting topic, feel free to <span className="text-emerald-400">share it on our public feed</span> for others to read!</p>
       </div>
     </div>
   </section>
