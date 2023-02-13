@@ -6,7 +6,7 @@ import { wordCount } from "../helpers/wordCount";
 
   const entriesUrl = "/api/stats";
 
-  function Stats (props){
+  function Stats () {
     const [loadData, setLoadData] = useState({
       hours:0,
       languages: [],
@@ -39,105 +39,88 @@ import { wordCount } from "../helpers/wordCount";
       setTotalWords(total)
     };
     
-     // 
+     
     let hoursArr = [["Date", "Hours"]]
     loadData.hoursPerDay.map((hours) => hoursArr.push([hours.date, parseInt(hours.sum)]))
-    console.log(hoursArr)
+    
+
+    let hoursOptions = {
+      title: "Number of Hours Per Day Journaled",
+      colors: ['#ea5234']
+    }
+
 
     let distinctLanguageArr = [["Languages", "Times Used"]]
     loadData.distinctLanguage.map((language) =>distinctLanguageArr.push([language.language_name, parseInt(language.language_amount)]))
 
-    let entriesPerDayArr = [["Entries", "Days"]]
+    let distinctLanguageOptions = {
+      title: "Number of Hours Per Language",
+      pieHole: 0.4,
+      colors: ['#55cb8f', '#1fc99a', '#00c5ad', '#00bfc2', '#00b8d7', '#00b0ea', '#00a7f9', '#009bff', '#008dff', '#377cfa']
+    };
+
+    let entriesPerDayArr = [["Days", "Entries"]]
     loadData.entriesPerDay.map((entry) => entriesPerDayArr.push([entry.date, parseInt(entry.count)]))
+
+    let entriesPerDayOptions = {
+      title: "Number of Entries Per Day",
+      fontName:"Times New Roman",
+      colors: ['#377cfb']
+    }
     
     
     return (
       <>
+      <span className="pb-2 pl-14 text-2xl font-semibold">February 2023</span>
       <div class="flex">
-      <div class="flex h-96 w-1/2 bg-red-300 justify-center items-center">
+        <div class="flex h-96 w-1/2 items-center justify-center">
+          {/* number of entries per day */}
+          <Chart
+          chartType="LineChart"
+          data={entriesPerDayArr}
+          options={entriesPerDayOptions}
+          width={"100%"}
+          height={"400px"}
+        />
+        </div>
+        <div class="flex h-96 w-1/2 items-center justify-center">
+          {/* how many times we use a specific language */}
+          <Chart
+            chartType="PieChart"
+            data={ distinctLanguageArr}
+            options={distinctLanguageOptions}
+            width={"100%"}
+            height={"400px"}
+          />
 
-        {/* how many times we use a specific language */}
-        <Chart
-      chartType="PieChart"
-      data={ distinctLanguageArr}
-     
-      width={"100%"}
-      height={"400px"}
-    />
-    </div>
-
-
-      {/* <div class="flex h-96 w-1/2 bg-red-300 justify-center items-center">
-        <p>{loadData.distinctLanguage.map((language) => {
-          return (
-            <>
-            <p>{language.language_name}</p>
-            <progress className="progress w-56" value= {language.language_amount} max="10"></progress>
-            </>
-          )
-        }
-        )}
-        </p>
-      </div> */}
-
-        {/* Counter */}
-
-      <div class="flex h-96 w-1/2 justify-center items-center">
-      <div class="flex h-96 w-1/2 justify-center items-center">
-        <div classname="flex">
-          <div className="stat-title">Total Words</div>
-          <div className="stat-value">{totalWords}</div>
-          <div className="stat-desc">Words Typed</div>
         </div>
       </div>
-      </div>
 
-
-       {/* hours spent studying per day */}
-
-        <div class="flex h-96 w-1/2 bg-yellow-300 justify-center items-center">
-        <Chart
-      chartType="BarChart"
-      data={ hoursArr}
-     
-      width={"100%"}
-      height={"400px"}
-    />
-        {/* <p>{loadData.hoursPerDay.map((hours) => {
-          return (
-            <>
-            <p>{hours.sum}</p>
-            <progress className="progress w-56" value= {hours.hoursPerDay} max="10"></progress>
-            </>
-            )
-          }
-          )}
-        </p> */}
-        </div> 
-
-      {/* </div>
       <div class="flex">
-      <div class="flex h-96 w-1/2 bg-yellow-300 justify-center items-center">
-          <div className="stat-title">Hours</div>
-          <div className="stat-value">{loadData.hours}</div>
-          <div className="stat-desc">Total Hours</div>
-      </div> */}
+        <div class="flex h-96 w-1/2 items-center justify-center">
+           {/* hours spent studying per day */}
+          <Chart
+            chartType="BarChart"
+            data={ hoursArr}
+            options={hoursOptions}
+            width={"100%"}
+            height={"400px"}
+          />
+        </div>
+        
 
-        {/* number of entries per day */}
-      <div class="flex h-96 w-1/2 bg-green-300 justify-center items-center">
-      <Chart
-      chartType="LineChart"
-      data={entriesPerDayArr}
-     
-      width={"100%"}
-      height={"400px"}
-    />
+       
+        <div class="flex h-96 w-1/2 items-center justify-center mr-36">
+           {/* Total Words Counter */}
+          <div classname="flex">
+          <span className="font-semibold text-sm mt-6">Total Words Typed This Month</span>
+            <div className="stat-value text-7xl">{totalWords}</div>
+            <div className="stat-desc text-lg px-2">Words Typed</div>
+          </div>
+        </div>
       </div>
-      </div>
-    
   <Outlet />
    </>
-  
     )
 }
 

@@ -118,15 +118,17 @@ router.get("/stats", (req, response) => {
         notes
         FROM entries;` ),
     db.query(`SELECT
-        date, 
+        UPPER(to_char(entries.date,'MON-DD')) AS date, 
         count(*) 
         FROM entries 
-        GROUP BY date;` ),
+        GROUP BY date
+        ORDER BY date;` ),
         db.query(`SELECT
-        date, 
+        UPPER(to_char(entries.date,'MON-DD')) AS date, 
         SUM(hours) 
         FROM entries 
-        GROUP BY date;` )
+        GROUP BY date
+        ORDER BY date;` )
   ])
     .then((results) => {
       console.log(results[0].rows[0].sum, results[1].rows, results[2].rows)
