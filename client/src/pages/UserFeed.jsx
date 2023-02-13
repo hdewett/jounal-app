@@ -110,7 +110,7 @@ function UserFeed() {
                   </div>
                 </div>
                 <div>
-                  Hilora Dewitt
+                  Hilora Dewett
                 </div>
               </div>
               <p className="btn">Follow</p>
