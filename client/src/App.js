@@ -17,6 +17,7 @@ import ViewEntry from './pages/ViewEntry';
 import EditEntry from './pages/EditEntry'
 import EntryForm2 from './components/EntryForm2';
 import UserFeed from './pages/UserFeed';
+import HomePage from './pages/HomePage';
 
 function App() {
 
@@ -35,17 +36,20 @@ function App() {
   
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<AppLayout />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/entries" element={<EntriesFeed />} />
-        <Route path="/entry/new" element={<EntryForm2 />} />
-        <Route path="/stats" element={<Stats />} />
-        <Route path="/entriesfeed" element={<Entries />} />
-        <Route path="/calendar" element={<CalendarSmall/>} />
-        <Route path="/viewentry/:id" element={<ViewEntry/>} />
-        <Route path="/entry/:id" element={<EditEntry/>} />
-        <Route path="/userfeed" element={<UserFeed />} />
-      </Route>
+      <>
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/entries" element={<EntriesFeed />} />
+          <Route path="/entry/new" element={<EntryForm2 />} />
+          <Route path="/stats" element={<Stats />} />
+          <Route path="/entriesfeed" element={<Entries />} />
+          <Route path="/calendar" element={<CalendarSmall/>} />
+          <Route path="/viewentry/:id" element={<ViewEntry/>} />
+          <Route path="/entry/:id" element={<EditEntry/>} />
+          <Route path="/userfeed" element={<UserFeed />} />
+        </Route>
+        <Route path="/welcome" element={<HomePage />} />
+      </>
       
     )
   );
