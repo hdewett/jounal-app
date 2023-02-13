@@ -121,6 +121,7 @@ import { wordCount } from "../helpers/wordCount";
       </div>
   <Outlet />
    </>
+  
     )
 }
 

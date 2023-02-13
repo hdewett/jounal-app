@@ -8,13 +8,13 @@ DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE languages (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
-  icon TEXT
+  icon_img VARCHAR(255)
 );
 
 CREATE TABLE frameworks (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
-  icon TEXT
+  icon_img VARCHAR(255)
 );
 
 CREATE TABLE users (

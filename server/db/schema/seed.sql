@@ -18,11 +18,11 @@ VALUES
 ('Angular'),
 ('Vue'),
 ('Rails'),
-('.NET'),
+('Nextjs'),
 ('Express'),
 ('Laravel'),
-('React-Native'),
 ('Django'),
+('Svelte'),
 ('Kotlin');
 
 INSERT INTO users (name, email, password, avatar_img)
@@ -160,7 +160,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 6, 4, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('How do I use power functions in Java?', '2022-02-04', '<p>How do I use power functions in Java?</p>
       <p>Here is an example of using <em><strong>powers in Java:</strong></em></p>
@@ -177,7 +177,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 1, 3, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('What is C# Operator Precedence?', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -189,7 +189,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 1, 2, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('How to set up a workspace in Java Eclipse', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -201,7 +201,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 1, 1, 3, 'Think of html as the skeleton of your web pages!', 1),
     
     ('How to set up a workspace in Java Eclipse', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -213,7 +213,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 1),
+    print(p1.age)</code></pre>', false, 8, 1, 3, 'Think of html as the skeleton of your web pages!', 1),
     
 
     ('What is `This` Keyword in JavaScript? Here`s How to Implement It', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
@@ -226,7 +226,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 5),
+    print(p1.age)</code></pre>', false, 8, 1, 3, 'Think of html as the skeleton of your web pages!', 5),
     
     ('How to Set Up Unit Testing for Java', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -238,7 +238,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 10),
+    print(p1.age)</code></pre>', false, 5, 5, 3, 'Think of html as the skeleton of your web pages!', 10),
     
     ('What is Cypress testing?', '2022-02-10', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -250,7 +250,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 9),
+    print(p1.age)</code></pre>', false, 4, 7, 3, 'Think of html as the skeleton of your web pages!', 9),
     
     ('Alternative Methods to Using Nested For Loops in Javascript', '2022-02-04', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -262,7 +262,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 9),
+    print(p1.age)</code></pre>', false, 1, 3, 3, 'Think of html as the skeleton of your web pages!', 9),
     
     ('What is PostgreSQL', '2022-02-05', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -274,7 +274,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 8),
+    print(p1.age)</code></pre>', false, 2, 8, 3, 'Think of html as the skeleton of your web pages!', 8),
     
     ('How to Avoid Infinite Loops in Javascript: Understanding Conditionals', '2022-02-06', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -286,7 +286,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 7),
+    print(p1.age)</code></pre>', false, 2, 8, 3, 'Think of html as the skeleton of your web pages!', 7),
     
     ('Using HTTP Methods for RESTful Services', '2022-02-07', '<p>Python uses an <u>init</u> constructor to set up classes!</p>
     <p>&nbsp;</p>
@@ -298,7 +298,7 @@ console.log(result);
     p1 = Person("John", 36)
 
     print(p1.name)
-    print(p1.age)</code></pre>', false, 9, 9, 3, 'Think of html as the skeleton of your web pages!', 8);
+    print(p1.age)</code></pre>', false, 8, 1, 3, 'Think of html as the skeleton of your web pages!', 8);
 
 
 

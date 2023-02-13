@@ -8,7 +8,7 @@ import { wordCount } from "../helpers/wordCount";
 
 function Dashboard() {
 
-  const entriesUrl = "/api/stats";
+  const statsEntriesUrl = "/api/stats";
 
   const [loadData, setLoadData] = useState({
     hours:0,
@@ -18,25 +18,18 @@ function Dashboard() {
 
   });
 
-  const [totalWords, setTotalWords] = useState(0)
-  console.log(loadData);
-  useEffect(() => {
-    getEntriesDataWithAxios();
-  }, []);
- 
+  const [totalWords, setTotalWords] = useState(0);
 
   useEffect(() => {
-    getEntriesDataWithAxios();
+    getStatsEntriesDataWithAxios();
   }, []);
   
-  const getEntriesDataWithAxios = async () => {
-    const response = await axios.get(entriesUrl);
+  const getStatsEntriesDataWithAxios = async () => {
+    const response = await axios.get(statsEntriesUrl);
     setLoadData(response.data);
     let total = 0
     for (const word of response.data.entries ) {
-      total+= wordCount(word.entry)
-     
-
+      total += wordCount(word.entry);
     }
     setTotalWords(total)
   };
@@ -65,7 +58,7 @@ function Dashboard() {
       
       <div className="stat">
         <div className="stat-title">Hours</div>
-        <div className="stat-value">{loadData.hours}</div>
+        <div className="stat-value">{loadData.hours ? loadData.hours : 0}</div>
         <div className="stat-desc">Total Hours</div>
       </div>
   
@@ -75,14 +68,12 @@ function Dashboard() {
     {/* <!-- Entries --> */}
     <div>
     <h2 className="font-bold text-3xl">Entries</h2>
-    <EntriesTable />
+    <EntriesTable 
+      getStatsEntriesDataWithAxios={getStatsEntriesDataWithAxios}
+    />
     <Outlet />
     </div>
   </main>
-
-
-  
-
   )
 }
 

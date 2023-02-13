@@ -1,33 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import Entry from './Entry';
-import axios from  'axios';
-import { useNavigate } from "react-router-dom";
-
-const entriesUrl = "/api/entries";
+import { useLocation } from "react-router-dom";
+import axios from 'axios';
 
 export default function EntriesTable(props) {
 
+  const location = useLocation();
+  const entriesUrl = "/api/entries/limit";
+  const entriesUrl2 = "/api/entries";
   const [entriesData, setEntriesData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     getEntriesDataWithAxios();
-    console.log("Path: ", navigate.pathname);
   }, []);
-  
+
+  // Fetch table data
   const getEntriesDataWithAxios = async () => {
-    // if (navigate.pathname === "/") {
+    if (location.pathname === "/") {
       const response = await axios.get(entriesUrl);
       setEntriesData(response.data);
-    // } else {
-    //   const response = await axios.get(entriesUrl2);
-    //   setEntriesData(response.data);
-    // }
+    } else {
+      const response = await axios.get(entriesUrl2);
+      setEntriesData(response.data);
+    }
   };
 
+  // Delete entry
   const handleDelete = async (id) => {
     setEntriesData(entriesData.filter((e) => e.id !== id))
     await axios.delete('/api/entries/' + id);
+    props.getStatsEntriesDataWithAxios();
     console.log("Deleting Entry ID: ", id);
   }
 
