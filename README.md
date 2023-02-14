@@ -32,6 +32,22 @@ Users have access to a dashboard that shows their five most journal entries. Use
 
 ## Screenshots
 
+### User Feed Page
+
+!["User Feed Page"](<https://github.com/hdewett/jounal-app/blob/main/docs/UserFeed%20(2).PNG>)
+
+### New Entry Page
+
+!["New Entry Page"](<https://github.com/hdewett/jounal-app/blob/main/docs/NewEntry%20(2).PNG>)
+
+### View Entry Page
+
+!["View Entry Page"](<https://github.com/hdewett/jounal-app/blob/main/docs/ViewEntry%20(2).PNG>)
+
+### Statistics Page
+
+!["Statistics Page"](<https://github.com/hdewett/jounal-app/blob/main/docs/Stats%20(2).PNG>)
+
 ## Dependencies
 
 - Node v16.19.0
