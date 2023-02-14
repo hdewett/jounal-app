@@ -24,7 +24,7 @@ function SideNavBar(props) {
     <div className="drawer-side">
     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
     <ul className="menu p-4 w-50 bg-base-200  text-base-content">
-    <a href="/" className="btn btn-ghost normal-case text-2xl text-primary font-bold">&lt;Codeful/&gt;</a>
+    <Link to="/welcome" className="btn btn-ghost normal-case text-2xl text-primary font-bold">&lt;Codeful/&gt;</Link>
       {/* <!-- Sidebar content here --> */}
       
 

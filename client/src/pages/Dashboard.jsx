@@ -67,7 +67,7 @@ function Dashboard() {
     </div>
     {/* <!-- Entries --> */}
     <div>
-    <h2 className="font-bold text-3xl">Entries</h2>
+    <h2 className="font-bold text-3xl mb-4">Entries</h2>
     <EntriesTable 
       getStatsEntriesDataWithAxios={getStatsEntriesDataWithAxios}
     />

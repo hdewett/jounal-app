@@ -47,11 +47,10 @@ export default function EntriesTable(props) {
 
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-none">
     <table className="table w-full shadow-xl">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Title</th>
           <th>Date</th>
           <th>Edit</th>

@@ -44,42 +44,45 @@ console.log(entriesData.entry);
 						      <Link to="/entries"><span className="btn btn-sm rounded-full cursor-pointer hover:scale-105 hover:bg-primary transition-all"> <IoIcons.IoMdArrowRoundBack size={20} />
 					        </span></Link>
 				        </div>
-              <div className="flex w-1/2 justify-end">
+              {/* <div className="flex w-1/2 justify-end">
               <span className="flex font-medium">{viewEntry.date}</span>
-          </div>
+          </div> */}
           </div>
 
 
             <h1>{viewEntry.title}</h1>
-               <p>{parse(viewEntry.entry)}</p>
+              <p>{parse(viewEntry.entry)}</p>
+            <h2>Additional Notes: </h2>
+              <p>{viewEntry.notes}</p>
             <Outlet />
           </article>
 
           <section class="flex h-96 w-24 items-center justify-center"></section>
 
-    <div className="overflow-x-auto">
+    <div className="overflow-none max-w-screen">
       <table className="table w-3/4">
         {/* <!-- head --> */}
         <tbody>
            {/* <!-- row 1 --> */}
+
+           <tr>
+              <th className="bg-base-200">Date</th>
+              <td className="border-t border-r">{viewEntry.date}</td>
+            </tr>
+
             <tr>
               <th className="bg-base-200">Hours</th>
-              <td className="border border-bg-200">{viewEntry.hours}</td>
+              <td className="border-b border-r">{viewEntry.hours}</td>
             </tr>
 
               <tr>
                 <th className="bg-base-200">Language</th>
-                <td className="border border-bg-200">{viewEntry.language}</td>
+                <td className="border-b border-r">{viewEntry.language}</td>
               </tr>
 
               <tr>
                 <th className="bg-base-200">Framework</th>
-                <td className="border border-bg-200">{viewEntry.framework}</td>
-              </tr>
-
-              <tr>
-                <th className="bg-base-200">Notes</th>
-                <td className="border border-bg-200">{viewEntry.notes}</td>
+                <td className="border-b border-r">{viewEntry.framework}</td>
               </tr>
     
         </tbody>

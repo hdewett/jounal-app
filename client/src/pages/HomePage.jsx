@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function HomePage() {
 
@@ -23,7 +24,7 @@ export default function HomePage() {
         Document and share your <span className="text-emerald-400">coding journey</span> with others through daily code journals!
       </h2>
       <div className="w-full flex justify-end mt-3 pr-16">
-        <a href="/" className="cursor-pointer rounded-full border border-primary px-5 py-2 transition duration-200 ease-in-out hover:bg-emerald-400 hover:text-white shadow-lg">View Dashboard</a>
+        <Link to="/" className="cursor-pointer rounded-full border border-primary px-5 py-2 transition duration-200 ease-in-out hover:bg-emerald-400 hover:text-white shadow-lg">View Dashboard</Link>
       </div>
       </div>
     </section>
@@ -37,7 +38,7 @@ export default function HomePage() {
       </div>
       <div className="w-1/2">
         <h3 className="text-3xl text-emerald-400 tracking-wide font-bold">Daily Journaling</h3>
-        <p className=" text-gray-400 text-lg mt-5">Codeful allows you to capture your coding progress through daily journaling. These daily journals allow allow to <span className="text-emerald-400">reinforce learned concepts</span>, reflect on tough problems and retain greater amounts of information.</p>
+        <p className=" text-gray-400 text-lg mt-5">Codeful allows you to capture your coding progress through daily journaling. These daily journals allow you to <span className="text-emerald-400">reinforce learned concepts</span>, reflect on tough problems and retain greater amounts of information.</p>
       </div>
     </div>
   </section>

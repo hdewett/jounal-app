@@ -45,7 +45,7 @@ import { wordCount } from "../helpers/wordCount";
     
 
     let hoursOptions = {
-      title: "Number of Hours Per Day Journaled",
+      title: "Number of Hours Per Day Studied",
       colors: ['#ea5234']
     }
 
@@ -54,7 +54,7 @@ import { wordCount } from "../helpers/wordCount";
     loadData.distinctLanguage.map((language) =>distinctLanguageArr.push([language.language_name, parseInt(language.language_amount)]))
 
     let distinctLanguageOptions = {
-      title: "Number of Hours Per Language",
+      title: "Languages Most Frequently Used",
       pieHole: 0.4,
       colors: ['#55cb8f', '#1fc99a', '#00c5ad', '#00bfc2', '#00b8d7', '#00b0ea', '#00a7f9', '#009bff', '#008dff', '#377cfa']
     };
@@ -113,7 +113,7 @@ import { wordCount } from "../helpers/wordCount";
            {/* Total Words Counter */}
           <div classname="flex">
             <div className=" flex w-full justify-start">
-              <span className="font-semibold text-sm text-black pl-4">Total Words Typed This Month</span>
+              <span className="font-semibold text-sm text-black pl-4 -translate-x-[66px] -translate-y-[75px]">Total Words Typed This Month</span>
               </div>
             <div className="stat-value text-9xl">{totalWords}</div>
             <div className="stat-desc text-lg text-black font-bold pl-[62px]">Words Typed</div>

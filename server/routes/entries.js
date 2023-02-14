@@ -12,7 +12,7 @@ module.exports = (db) => {
       to_char(date,'YYYY-MM-DD') AS date
       FROM entries
       WHERE user_id = 1
-      ORDER BY date
+      ORDER BY date DESC
       LIMIT 5;`
     )
       .then(({ rows: entries }) => {
@@ -34,7 +34,7 @@ module.exports = (db) => {
         to_char(date,'YYYY-MM-DD') AS date
       FROM entries
       WHERE user_id = 1
-      ORDER BY date;`
+      ORDER BY date DESC;`
     )
       .then(({ rows: entries }) => {
         console.log("retrieving entries");
@@ -131,13 +131,13 @@ router.get("/stats", (req, response) => {
         notes
         FROM entries;` ),
     db.query(`SELECT
-        UPPER(to_char(entries.date,'MON-DD')) AS date, 
+        UPPER(to_char(entries.date,'Mon-DD')) AS date, 
         count(*) 
         FROM entries 
         GROUP BY date
         ORDER BY date;` ),
         db.query(`SELECT
-        UPPER(to_char(entries.date,'MON-DD')) AS date, 
+        UPPER(to_char(entries.date,'Mon-DD')) AS date, 
         SUM(hours) 
         FROM entries 
         GROUP BY date
